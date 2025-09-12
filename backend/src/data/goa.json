@@ -1,0 +1,170 @@
+{
+    "city": {
+      "id": "C1",
+      "name": "Goa",
+      "state": "Goa",
+      "country": "India",
+      "coordinates": {"lat": 15.2993, "lon": 74.1240},
+      "timezone": "Asia/Kolkata",
+      "created_at": "2025-09-12T15:00:00+05:30",
+      "updated_at": "2025-09-12T15:00:00+05:30",
+      "description": {
+        "en": "Goa, India's smallest state, is famous for its golden beaches, Portuguese heritage, vibrant nightlife, and laid-back tropical vibe. A unique blend of Indian and Western cultures, Goa offers everything from world heritage churches and ancient forts to water sports, flea markets, and mouthwatering seafood. Whether it’s adventure, spirituality, or relaxation, Goa provides an unforgettable travel experience for all kinds of tourists.",
+        "hi": "गोवा, भारत का सबसे छोटा राज्य, अपने सुनहरे समुद्र तटों, पुर्तगाली धरोहर, जीवंत नाइटलाइफ़ और सुकूनभरे उष्णकटिबंधीय माहौल के लिए प्रसिद्ध है। भारतीय और पश्चिमी संस्कृति के अद्वितीय संगम के साथ, गोवा विश्व धरोहर चर्चों और प्राचीन किलों से लेकर वाटर स्पोर्ट्स, फ्ली मार्केट और स्वादिष्ट सीफूड तक सब कुछ प्रदान करता है। रोमांच, आध्यात्मिकता या विश्राम – हर प्रकार के पर्यटकों के लिए गोवा एक अविस्मरणीय यात्रा अनुभव देता है।"
+      },
+      "pois": [
+        {
+          "id": "GO1",
+          "name": {"en": "Baga Beach", "hi": "बागा बीच"},
+          "category": "Leisure",
+          "subcategory": "Beach",
+          "description": {
+            "en": "One of the most popular beaches in Goa, famous for water sports, nightlife, beach shacks, and vibrant parties.",
+            "hi": "गोवा का सबसे लोकप्रिय समुद्र तटों में से एक, जो वाटर स्पोर्ट्स, नाइटलाइफ़, बीच शैक्स और जीवंत पार्टियों के लिए प्रसिद्ध है।"
+          },
+          "coordinates": {"lat": 15.5522, "lon": 73.7517},
+          "rating": 4.5,
+          "cost": [
+            {"amount": 0, "currency": "INR", "type": "entry_fee"},
+            {"amount": 500, "currency": "INR", "type": "activity_cost"}
+          ],
+          "estimated_duration_minutes": 180,
+          "tags": ["beach", "nightlife", "water_sports", "parties"],
+          "accessibility": {"wheelchair_accessible": true, "pet_friendly": true},
+          "best_time_to_visit": {"start": "07:00", "end": "22:00"},
+          "weather_alerts": ["high_tide", "rain"]
+        },
+        {
+          "id": "GO2",
+          "name": {"en": "Basilica of Bom Jesus", "hi": "बॉम जीसस बेसिलिका"},
+          "category": "Historical",
+          "subcategory": "Church",
+          "description": {
+            "en": "A UNESCO World Heritage Site built in 1605, housing the remains of St. Francis Xavier and showcasing baroque architecture.",
+            "hi": "1605 में निर्मित यूनेस्को विश्व धरोहर स्थल, जहां सेंट फ्रांसिस जेवियर के अवशेष रखे गए हैं और बारोक वास्तुकला प्रदर्शित होती है।"
+          },
+          "coordinates": {"lat": 15.5009, "lon": 73.9103},
+          "rating": 4.7,
+          "cost": [
+            {"amount": 0, "currency": "INR", "type": "entry_fee"},
+            {"amount": 0, "currency": "INR", "type": "activity_cost"}
+          ],
+          "estimated_duration_minutes": 90,
+          "tags": ["history", "heritage", "architecture", "spirituality"],
+          "accessibility": {"wheelchair_accessible": true, "pet_friendly": false},
+          "best_time_to_visit": {"start": "09:00", "end": "18:00"},
+          "weather_alerts": ["humid", "rain"]
+        },
+        {
+          "id": "GO3",
+          "name": {"en": "Fort Aguada", "hi": "फोर्ट अगुआड़ा"},
+          "category": "Historical",
+          "subcategory": "Fort",
+          "description": {
+            "en": "A 17th-century Portuguese fort overlooking the Arabian Sea, popular for its lighthouse and panoramic views.",
+            "hi": "17वीं शताब्दी का पुर्तगाली किला, जो अरब सागर की ओर मुख किए हुए है और अपने लाइटहाउस व पैनोरमिक दृश्यों के लिए लोकप्रिय है।"
+          },
+          "coordinates": {"lat": 15.4920, "lon": 73.7730},
+          "rating": 4.4,
+          "cost": [
+            {"amount": 40, "currency": "INR", "type": "entry_fee"},
+            {"amount": 0, "currency": "INR", "type": "activity_cost"}
+          ],
+          "estimated_duration_minutes": 120,
+          "tags": ["fort", "views", "heritage", "photography"],
+          "accessibility": {"wheelchair_accessible": false, "pet_friendly": false},
+          "best_time_to_visit": {"start": "09:30", "end": "17:30"},
+          "weather_alerts": ["hot", "humid"]
+        },
+        {
+          "id": "GO4",
+          "name": {"en": "Dudhsagar Waterfalls", "hi": "दूधसागर जलप्रपात"},
+          "category": "Nature",
+          "subcategory": "Waterfall",
+          "description": {
+            "en": "One of India’s tallest waterfalls located on the Mandovi River, surrounded by lush greenery and best visited during monsoon.",
+            "hi": "भारत के सबसे ऊंचे जलप्रपातों में से एक, मांडोवी नदी पर स्थित और हरे-भरे जंगलों से घिरा हुआ, जिसे मानसून में देखना सर्वोत्तम है।"
+          },
+          "coordinates": {"lat": 15.3146, "lon": 74.3140},
+          "rating": 4.6,
+          "cost": [
+            {"amount": 50, "currency": "INR", "type": "entry_fee"},
+            {"amount": 500, "currency": "INR", "type": "activity_cost"}
+          ],
+          "estimated_duration_minutes": 180,
+          "tags": ["nature", "waterfall", "hiking", "photography"],
+          "accessibility": {"wheelchair_accessible": false, "pet_friendly": false},
+          "best_time_to_visit": {"start": "08:00", "end": "16:00"},
+          "weather_alerts": ["rain", "slippery_paths"]
+        },
+        {
+          "id": "GO5",
+          "name": {"en": "Anjuna Flea Market", "hi": "अंजुना फ्ली मार्केट"},
+          "category": "Shopping",
+          "subcategory": "Market",
+          "description": {
+            "en": "A vibrant Wednesday-only market offering handicrafts, clothes, jewelry, souvenirs, and live music performances.",
+            "hi": "सिर्फ बुधवार को लगने वाला जीवंत बाजार, जहां हस्तशिल्प, कपड़े, आभूषण, स्मृति चिन्ह और लाइव म्यूज़िक शो मिलते हैं।"
+          },
+          "coordinates": {"lat": 15.5870, "lon": 73.7448},
+          "rating": 4.2,
+          "cost": [
+            {"amount": 0, "currency": "INR", "type": "entry_fee"},
+            {"amount": 200, "currency": "INR", "type": "activity_cost"}
+          ],
+          "estimated_duration_minutes": 120,
+          "tags": ["shopping", "culture", "local", "music"],
+          "accessibility": {"wheelchair_accessible": true, "pet_friendly": true},
+          "best_time_to_visit": {"start": "10:00", "end": "18:00"},
+          "weather_alerts": ["heat", "rain"]
+        }
+      ],
+      "accommodations": [
+        {
+          "id": "GH1",
+          "name": {"en": "Taj Exotica Resort & Spa", "hi": "ताज एक्सोटिका रिसॉर्ट एंड स्पा"},
+          "coordinates": {"lat": 15.2405, "lon": 73.9453},
+          "rating": 4.8,
+          "cost_per_night": 18000,
+          "currency": "INR",
+          "amenities": ["wifi", "spa", "pool", "beach_access", "restaurant"],
+          "type": "5-star",
+          "accessibility": {"wheelchair_accessible": true, "pet_friendly": false}
+        },
+        {
+          "id": "GH2",
+          "name": {"en": "Cidade de Goa", "hi": "सिदादे डी गोवा"},
+          "coordinates": {"lat": 15.4635, "lon": 73.8060},
+          "rating": 4.5,
+          "cost_per_night": 7500,
+          "currency": "INR",
+          "amenities": ["wifi", "pool", "restaurant", "spa"],
+          "type": "4-star",
+          "accessibility": {"wheelchair_accessible": true, "pet_friendly": true}
+        },
+        {
+          "id": "GH3",
+          "name": {"en": "Colva Residency", "hi": "कोलवा रेजिडेंसी"},
+          "coordinates": {"lat": 15.2790, "lon": 73.9221},
+          "rating": 4.0,
+          "cost_per_night": 2000,
+          "currency": "INR",
+          "amenities": ["wifi", "breakfast", "parking"],
+          "type": "Budget",
+          "accessibility": {"wheelchair_accessible": false, "pet_friendly": true}
+        }
+      ],
+      "transport": {
+        "taxi": {"per_km": 25, "currency": "INR", "average_speed_kmph": 35},
+        "bus": {"per_ride": 20, "currency": "INR"},
+        "rental_bike": {"per_day": 400, "currency": "INR"},
+        "rental_car": {"per_day": 1200, "currency": "INR"},
+        "auto_rickshaw": {"per_km": 18, "currency": "INR"}
+      },
+      "weather_alert": {
+        "sources": ["OpenWeatherMap", "AccuWeather"],
+        "thresholds": {"rain": "80mm", "high_tide": "warning", "storm": "moderate"}
+      }
+    }
+  }
+  

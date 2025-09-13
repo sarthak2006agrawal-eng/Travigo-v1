@@ -1,170 +1,78 @@
 {
-    "city": {
-      "id": "C3",
-      "name": "Pondicherry",
-      "state": "Puducherry",
-      "country": "India",
-      "coordinates": { "lat": 11.9416, "lon": 79.8083 },
-      "timezone": "Asia/Kolkata",
-      "created_at": "2025-09-12T18:00:00+05:30",
-      "updated_at": "2025-09-12T18:00:00+05:30",
-      "description": {
-        "en": "Pondicherry, often called the 'French Riviera of the East,' is known for its colonial architecture, serene beaches, spiritual aura, and vibrant French-Indian cultural blend.",
-        "hi": "पुडुचेरी, जिसे अक्सर 'पूर्व का फ्रेंच रिवेरा' कहा जाता है, अपनी औपनिवेशिक वास्तुकला, शांत समुद्र तटों, आध्यात्मिक वातावरण और जीवंत फ्रेंच-भारतीय सांस्कृतिक मिश्रण के लिए प्रसिद्ध है।"
-      },
-      "pois": [
+  "plan": [
+    {
+      "location": "Pondicherry, Tamil Nadu",
+      "activities": [
         {
-          "id": "PO1",
-          "name": {"en": "Promenade Beach", "hi": "प्रोमेनेड बीच"},
-          "category": "Leisure",
-          "subcategory": "Beach",
-          "description": {
-            "en": "A rocky beachfront perfect for evening walks, sunrise views, and street food experiences.",
-            "hi": "एक पथरीला समुद्र तट जो शाम की सैर, सूर्योदय के दृश्य और स्ट्रीट फूड अनुभवों के लिए उत्तम है।"
-          },
-          "coordinates": {"lat": 11.9366, "lon": 79.8356},
-          "rating": 4.5,
-          "cost": [
-            {"amount": 0, "currency": "INR", "type": "entry_fee"},
-            {"amount": 200, "currency": "INR", "type": "activity_cost"}
-          ],
-          "estimated_duration_minutes": 120,
-          "tags": ["beach", "leisure", "sunset", "walks"],
-          "accessibility": {"wheelchair_accessible": true, "pet_friendly": true},
-          "best_time_to_visit": {"start": "06:00", "end": "20:00"},
-          "weather_alerts": ["high_tide", "rain"]
+          "name": "Promenade Beach Walk",
+          "cost": 0,
+          "type": "sightseeing",
+          "bookingLink": ""
         },
         {
-          "id": "PO2",
-          "name": {"en": "Auroville", "hi": "अवरोविले"},
-          "category": "Spiritual",
-          "subcategory": "Township",
-          "description": {
-            "en": "An experimental township promoting human unity, featuring the famous Matrimandir meditation center.",
-            "hi": "एक प्रायोगिक टाउनशिप जो मानव एकता को बढ़ावा देती है और इसमें प्रसिद्ध मातृमंदिर ध्यान केंद्र है।"
-          },
-          "coordinates": {"lat": 12.0056, "lon": 79.8101},
-          "rating": 4.7,
-          "cost": [
-            {"amount": 0, "currency": "INR", "type": "entry_fee"},
-            {"amount": 100, "currency": "INR", "type": "activity_cost"}
-          ],
-          "estimated_duration_minutes": 180,
-          "tags": ["spirituality", "meditation", "nature", "culture"],
-          "accessibility": {"wheelchair_accessible": true, "pet_friendly": false},
-          "best_time_to_visit": {"start": "08:00", "end": "18:00"},
-          "weather_alerts": ["rain", "heat"]
+          "name": "Aurobindo Ashram Visit",
+          "cost": 0,
+          "type": "sightseeing",
+          "bookingLink": ""
         },
         {
-          "id": "PO3",
-          "name": {"en": "Sri Aurobindo Ashram", "hi": "श्री अरविंद आश्रम"},
-          "category": "Spiritual",
-          "subcategory": "Ashram",
-          "description": {
-            "en": "Founded by Sri Aurobindo and The Mother, this ashram is a hub of yoga, spirituality, and meditation.",
-            "hi": "श्री अरविंद और 'मदर' द्वारा स्थापित यह आश्रम योग, आध्यात्मिकता और ध्यान का केंद्र है।"
-          },
-          "coordinates": {"lat": 11.9375, "lon": 79.8352},
-          "rating": 4.6,
-          "cost": [
-            {"amount": 0, "currency": "INR", "type": "entry_fee"},
-            {"amount": 50, "currency": "INR", "type": "activity_cost"}
-          ],
-          "estimated_duration_minutes": 90,
-          "tags": ["spirituality", "meditation", "heritage"],
-          "accessibility": {"wheelchair_accessible": true, "pet_friendly": false},
-          "best_time_to_visit": {"start": "07:00", "end": "17:00"},
-          "weather_alerts": ["heat", "rain"]
-        },
-        {
-          "id": "PO4",
-          "name": {"en": "French Quarter", "hi": "फ्रेंच क्वार्टर"},
-          "category": "Heritage",
-          "subcategory": "Colonial Area",
-          "description": {
-            "en": "Known for colorful colonial villas, cafes, and quiet streets that reflect French influence.",
-            "hi": "रंगीन औपनिवेशिक विला, कैफे और शांत गलियों के लिए प्रसिद्ध, जो फ्रेंच प्रभाव को दर्शाती हैं।"
-          },
-          "coordinates": {"lat": 11.9341, "lon": 79.8300},
-          "rating": 4.4,
-          "cost": [
-            {"amount": 0, "currency": "INR", "type": "entry_fee"},
-            {"amount": 0, "currency": "INR", "type": "activity_cost"}
-          ],
-          "estimated_duration_minutes": 90,
-          "tags": ["heritage", "culture", "architecture", "photography"],
-          "accessibility": {"wheelchair_accessible": true, "pet_friendly": true},
-          "best_time_to_visit": {"start": "08:00", "end": "18:00"},
-          "weather_alerts": ["rain", "heat"]
-        },
-        {
-          "id": "PO5",
-          "name": {"en": "Paradise Beach", "hi": "पैराडाइज बीच"},
-          "category": "Leisure",
-          "subcategory": "Beach",
-          "description": {
-            "en": "Accessible via boat, this golden sand beach is peaceful and ideal for water activities.",
-            "hi": "नौका से पहुंचने योग्य यह सुनहरी रेत वाला समुद्र तट शांत और जल क्रीड़ाओं के लिए उपयुक्त है।"
-          },
-          "coordinates": {"lat": 11.8839, "lon": 79.8154},
-          "rating": 4.3,
-          "cost": [
-            {"amount": 0, "currency": "INR", "type": "entry_fee"},
-            {"amount": 200, "currency": "INR", "type": "activity_cost"}
-          ],
-          "estimated_duration_minutes": 120,
-          "tags": ["beach", "water_sports", "leisure", "nature"],
-          "accessibility": {"wheelchair_accessible": false, "pet_friendly": true},
-          "best_time_to_visit": {"start": "07:00", "end": "19:00"},
-          "weather_alerts": ["high_tide", "rain"]
-        }
-      ],
-      "accommodations": [
-        {
-          "id": "POH1",
-          "name": {"en": "La Villa", "hi": "ला विला"},
-          "coordinates": {"lat": 11.9362, "lon": 79.8347},
-          "rating": 4.8,
-          "cost_per_night": 12000,
-          "currency": "INR",
-          "amenities": ["wifi", "restaurant", "pool", "spa", "parking"],
-          "type": "5-star",
-          "accessibility": {"wheelchair_accessible": true, "pet_friendly": false}
-        },
-        {
-          "id": "POH2",
-          "name": {"en": "Le Dupleix", "hi": "ले डुप्लिक्स"},
-          "coordinates": {"lat": 11.9369, "lon": 79.8349},
-          "rating": 4.6,
-          "cost_per_night": 9000,
-          "currency": "INR",
-          "amenities": ["wifi", "restaurant", "pool", "spa", "parking"],
-          "type": "5-star",
-          "accessibility": {"wheelchair_accessible": true, "pet_friendly": false}
-        },
-        {
-          "id": "POH3",
-          "name": {"en": "Auroville Guest Houses", "hi": "अवरोविले गेस्ट हाउस"},
-          "coordinates": {"lat": 12.0032, "lon": 79.8090},
-          "rating": 4.0,
-          "cost_per_night": 2500,
-          "currency": "INR",
-          "amenities": ["wifi", "breakfast", "parking"],
-          "type": "3-star",
-          "accessibility": {"wheelchair_accessible": true, "pet_friendly": true}
+          "name": "Biking Around French Quarters",
+          "cost": 300,
+          "type": "adventure",
+          "bookingLink": "https://www.pondiadventures.com/book-bike-tour"
         }
       ],
       "transport": {
-        "taxi": {"per_km": 15, "currency": "INR", "average_speed_kmph": 30},
-        "bus": {"per_ride": 25, "currency": "INR"},
-        "rental_bike": {"per_hour": 200, "currency": "INR"},
-        "auto_rickshaw": {"per_km": 12, "currency": "INR"},
-        "shared_cab": {"per_km": 10, "currency": "INR"}
+        "mode": "cab",
+        "cost": 700,
+        "provider": "Ola",
+        "bookingLink": "https://www.olacabs.com/"
       },
-      "weather_alert": {
-        "sources": ["OpenWeatherMap", "AccuWeather"],
-        "thresholds": {"rain": "50mm", "heat": "45°C", "cyclone_risk": "high"}
-      }
+      "hotel": {
+        "name": "Le Dupleix",
+        "cost": 3500,
+        "provider": "Booking.com",
+        "bookingLink": "https://www.booking.com/hotel/in/le-dupleix.html"
+      },
+      "totalDayCost": 4500
+    },
+    {
+      "location": "Pondicherry, Tamil Nadu",
+      "activities": [
+        {
+          "name": "Paradise Beach Visit",
+          "cost": 0,
+          "type": "sightseeing",
+          "bookingLink": ""
+        },
+        {
+          "name": "Boat Ride at Chunnambar Backwaters",
+          "cost": 500,
+          "type": "adventure",
+          "bookingLink": "https://www.pondiadventures.com/book-boat"
+        },
+        {
+          "name": "French Colony Walk",
+          "cost": 0,
+          "type": "sightseeing",
+          "bookingLink": ""
+        }
+      ],
+      "transport": {
+        "mode": "bike rental",
+        "cost": 250,
+        "provider": "Local Rentals",
+        "bookingLink": ""
+      },
+      "hotel": {
+        "name": "Le Dupleix",
+        "cost": 3500,
+        "provider": "Booking.com",
+        "bookingLink": "https://www.booking.com/hotel/in/le-dupleix.html"
+      },
+      "totalDayCost": 4250
     }
-  }
-  
+  ],
+  "totalCost": 8750,
+  "status": "draft"
+}

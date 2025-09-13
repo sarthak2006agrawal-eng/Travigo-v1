@@ -1,6 +1,8 @@
 {
+  "city": "Goa",
   "plan": [
     {
+      "day": 1,
       "location": "Goa, India",
       "activities": [
         {
@@ -37,6 +39,7 @@
       "totalDayCost": 7250
     },
     {
+      "day": 2,
       "location": "Goa, India",
       "activities": [
         {

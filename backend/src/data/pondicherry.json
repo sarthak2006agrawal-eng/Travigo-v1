@@ -1,7 +1,9 @@
 {
+  "city": "Pondicherry",
   "plan": [
     {
-      "location": "Pondicherry, Tamil Nadu",
+      "day": 1,
+      "location": "Pondicherry, India",
       "activities": [
         {
           "name": "Promenade Beach Walk",
@@ -10,69 +12,70 @@
           "bookingLink": ""
         },
         {
-          "name": "Aurobindo Ashram Visit",
+          "name": "Sri Aurobindo Ashram Visit",
           "cost": 0,
-          "type": "sightseeing",
+          "type": "cultural",
           "bookingLink": ""
         },
         {
-          "name": "Biking Around French Quarters",
-          "cost": 300,
-          "type": "adventure",
-          "bookingLink": "https://www.pondiadventures.com/book-bike-tour"
+          "name": "French Quarter Cycling Tour",
+          "cost": 500,
+          "type": "leisure",
+          "bookingLink": "https://www.pondycyclingtours.com/book"
         }
       ],
       "transport": {
         "mode": "cab",
-        "cost": 700,
+        "cost": 800,
+        "provider": "Uber",
+        "bookingLink": "https://www.uber.com/in/en/"
+      },
+      "hotel": {
+        "name": "Le Dupleix",
+        "cost": 4000,
+        "provider": "Booking.com",
+        "bookingLink": "https://www.booking.com/hotel/in/le-dupleix-pondicherry.html"
+      },
+      "totalDayCost": 5300
+    },
+    {
+      "day": 2,
+      "location": "Pondicherry, India",
+      "activities": [
+        {
+          "name": "Auroville Visit",
+          "cost": 200,
+          "type": "cultural",
+          "bookingLink": "https://www.auroville.org/book"
+        },
+        {
+          "name": "Paradise Beach Excursion",
+          "cost": 600,
+          "type": "adventure",
+          "bookingLink": "https://www.paradisebeachpondy.com/book"
+        },
+        {
+          "name": "Pondicherry Museum",
+          "cost": 50,
+          "type": "sightseeing",
+          "bookingLink": ""
+        }
+      ],
+      "transport": {
+        "mode": "cab",
+        "cost": 900,
         "provider": "Ola",
         "bookingLink": "https://www.olacabs.com/"
       },
       "hotel": {
         "name": "Le Dupleix",
-        "cost": 3500,
+        "cost": 4000,
         "provider": "Booking.com",
-        "bookingLink": "https://www.booking.com/hotel/in/le-dupleix.html"
+        "bookingLink": "https://www.booking.com/hotel/in/le-dupleix-pondicherry.html"
       },
-      "totalDayCost": 4500
-    },
-    {
-      "location": "Pondicherry, Tamil Nadu",
-      "activities": [
-        {
-          "name": "Paradise Beach Visit",
-          "cost": 0,
-          "type": "sightseeing",
-          "bookingLink": ""
-        },
-        {
-          "name": "Boat Ride at Chunnambar Backwaters",
-          "cost": 500,
-          "type": "adventure",
-          "bookingLink": "https://www.pondiadventures.com/book-boat"
-        },
-        {
-          "name": "French Colony Walk",
-          "cost": 0,
-          "type": "sightseeing",
-          "bookingLink": ""
-        }
-      ],
-      "transport": {
-        "mode": "bike rental",
-        "cost": 250,
-        "provider": "Local Rentals",
-        "bookingLink": ""
-      },
-      "hotel": {
-        "name": "Le Dupleix",
-        "cost": 3500,
-        "provider": "Booking.com",
-        "bookingLink": "https://www.booking.com/hotel/in/le-dupleix.html"
-      },
-      "totalDayCost": 4250
+      "totalDayCost": 5650
     }
   ],
-  "totalCost": 8750,
+  "totalCost": 10950,
   "status": "draft"
 }

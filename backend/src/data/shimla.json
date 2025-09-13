@@ -1,52 +1,55 @@
 {
+  "city": "Shimla",
   "plan": [
     {
-      "location": "Shimla, Himachal Pradesh",
+      "day": 1,
+      "location": "Shimla, India",
       "activities": [
         {
           "name": "Mall Road Walk",
           "cost": 0,
-          "type": "sightseeing",
+          "type": "leisure",
           "bookingLink": ""
-        },
-        {
-          "name": "Kufri Adventure Park",
-          "cost": 500,
-          "type": "adventure",
-          "bookingLink": "https://www.kufriadventure.com/book"
         },
         {
           "name": "Jakhoo Temple Visit",
           "cost": 50,
           "type": "sightseeing",
           "bookingLink": ""
-        }
-      ],
-      "transport": {
-        "mode": "cab",
-        "cost": 800,
-        "provider": "Uber",
-        "bookingLink": "https://www.uber.com/in/en/"
-      },
-      "hotel": {
-        "name": "Hotel Willow Banks",
-        "cost": 2500,
-        "provider": "Booking.com",
-        "bookingLink": "https://www.booking.com/hotel/in/willow-banks.html"
-      },
-      "totalDayCost": 3850
-    },
-    {
-      "location": "Shimla, Himachal Pradesh",
-      "activities": [
+        },
         {
           "name": "The Ridge Visit",
           "cost": 0,
           "type": "sightseeing",
           "bookingLink": ""
+        }
+      ],
+      "transport": {
+        "mode": "cab",
+        "cost": 500,
+        "provider": "Uber",
+        "bookingLink": "https://www.uber.com/in/en/"
+      },
+      "hotel": {
+        "name": "Hotel Himani",
+        "cost": 2500,
+        "provider": "Booking.com",
+        "bookingLink": "https://www.booking.com/hotel/in/hotel-himani.html"
+      },
+      "totalDayCost": 3050
+    },
+    {
+      "day": 2,
+      "location": "Shimla, India",
+      "activities": [
+        {
+          "name": "Kufri Adventure Park",
+          "cost": 800,
+          "type": "adventure",
+          "bookingLink": "https://www.kufriadventure.com/book"
         },
         {
-          "name": "Christ Church",
+          "name": "Christ Church Visit",
           "cost": 0,
           "type": "sightseeing",
           "bookingLink": ""
@@ -54,25 +57,25 @@
         {
           "name": "Shimla State Museum",
           "cost": 100,
-          "type": "sightseeing",
+          "type": "cultural",
           "bookingLink": ""
         }
       ],
       "transport": {
-        "mode": "bus",
-        "cost": 300,
-        "provider": "HRTC",
-        "bookingLink": "https://www.hrtchp.com/"
+        "mode": "cab",
+        "cost": 500,
+        "provider": "Ola",
+        "bookingLink": "https://www.olacabs.com/"
       },
       "hotel": {
-        "name": "Hotel Willow Banks",
+        "name": "Hotel Himani",
         "cost": 2500,
         "provider": "Booking.com",
-        "bookingLink": "https://www.booking.com/hotel/in/willow-banks.html"
+        "bookingLink": "https://www.booking.com/hotel/in/hotel-himani.html"
       },
-      "totalDayCost": 2900
+      "totalDayCost": 3900
     }
   ],
-  "totalCost": 6750,
+  "totalCost": 6950,
   "status": "draft"
 }

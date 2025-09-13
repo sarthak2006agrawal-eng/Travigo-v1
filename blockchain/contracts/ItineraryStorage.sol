@@ -1,39 +1,70 @@
-//SPDX-License-Identifier: MIT
+// SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
 
 contract ItineraryStorage {
-    address public owner;
-    mapping(address => bytes32[]) private userItineraries;
-
-    event ItineraryStored(address indexed user , bytes32 indexed itineraryHash, uint256 timestamp);
-
-    constructor() {
-        owner = msg.sender;
+    struct Itinerary {
+        string userId;           // off-chain ID or wallet address link
+        string[] destinations;   // list of places
+        uint256 totalBudget;     // planned budget
+        uint256 createdAt;       // timestamp
+        uint256 updatedAt;       // last modified timestamp
     }
 
-    modifier onlyOwner() {
-        require(msg.sender == owner, "Only owner");
-        _;
+    mapping(uint256 => Itinerary) private itineraries;
+    uint256 private itineraryCount;
+
+    event ItineraryCreated(uint256 itineraryId, string userId);
+    event ItineraryUpdated(uint256 itineraryId);
+
+    // Create new itinerary
+    function createItinerary(
+        string memory _userId,
+        string[] memory _destinations,
+        uint256 _totalBudget
+    ) public returns (uint256) {
+        itineraryCount++;
+        Itinerary storage itin = itineraries[itineraryCount];
+        itin.userId = _userId;
+        itin.destinations = _destinations;
+        itin.totalBudget = _totalBudget;
+        itin.createdAt = block.timestamp;
+        itin.updatedAt = block.timestamp;
+
+        emit ItineraryCreated(itineraryCount, _userId);
+        return itineraryCount;
     }
 
-    // Owner stores itinerary hash for a user
-    function storeItineraryFor(address user, bytes32 itineraryHash) external onlyOwner {
-        userItineraries[user].push(itineraryHash);
-        emit ItineraryStored(user, itineraryHash, block.timestamp);
+    // Update itinerary destinations or budget
+    function updateItinerary(
+        uint256 _id,
+        string[] memory _destinations,
+        uint256 _totalBudget
+    ) public {
+        require(_id > 0 && _id <= itineraryCount, "Invalid itinerary ID");
+        Itinerary storage itin = itineraries[_id];
+        itin.destinations = _destinations;
+        itin.totalBudget = _totalBudget;
+        itin.updatedAt = block.timestamp;
+
+        emit ItineraryUpdated(_id);
     }
 
-    // Get itineraries for a user
-    function getItineraries(address user) external view returns (bytes32[] memory) {
-        return userItineraries[user];
-    }
-
-    function verifyItinerary(address user, bytes32 itineraryHash) external view returns (bool) {
-        bytes32[] storage arr = userItineraries[user];
-        for(uint i = 0; i < arr.length; i++) {
-            if(arr[i] == itineraryHash) {
-                return true;
-            }
-        }
-        return false;
+    // Get itinerary by ID
+    function getItinerary(uint256 _id) public view returns (
+        string memory userId,
+        string[] memory destinations,
+        uint256 totalBudget,
+        uint256 createdAt,
+        uint256 updatedAt
+    ) {
+        require(_id > 0 && _id <= itineraryCount, "Invalid itinerary ID");
+        Itinerary storage itin = itineraries[_id];
+        return (
+            itin.userId,
+            itin.destinations,
+            itin.totalBudget,
+            itin.createdAt,
+            itin.updatedAt
+        );
     }
 }

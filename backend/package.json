@@ -1,11 +1,10 @@
-
 {
   "name": "backend",
   "version": "1.0.0",
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "dev"  : "nodemon index.js"
+    "dev": "nodemon -r dotenv/config src/index.js"
   },
   "keywords": [],
   "author": "",
@@ -19,7 +18,7 @@
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.18.1",
     "nodeman": "^1.1.2",
+    "nodemon": "^3.1.10",
     "openai": "^5.20.1"
   }
 }
-

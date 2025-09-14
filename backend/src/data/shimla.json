@@ -1,81 +1,241 @@
 {
-  "city": "Shimla",
-  "plan": [
-    {
-      "day": 1,
-      "location": "Shimla, India",
-      "activities": [
-        {
-          "name": "Mall Road Walk",
-          "cost": 0,
-          "type": "leisure",
-          "bookingLink": ""
-        },
-        {
-          "name": "Jakhoo Temple Visit",
-          "cost": 50,
-          "type": "sightseeing",
-          "bookingLink": ""
-        },
-        {
-          "name": "The Ridge Visit",
-          "cost": 0,
-          "type": "sightseeing",
-          "bookingLink": ""
-        }
-      ],
-      "transport": {
-        "mode": "cab",
-        "cost": 500,
-        "provider": "Uber",
-        "bookingLink": "https://www.uber.com/in/en/"
-      },
-      "hotel": {
-        "name": "Hotel Himani",
-        "cost": 2500,
-        "provider": "Booking.com",
-        "bookingLink": "https://www.booking.com/hotel/in/hotel-himani.html"
-      },
-      "totalDayCost": 3050
+  "city": {
+    "id": "C3",
+    "name": "Shimla",
+    "state": "Himachal Pradesh",
+    "country": "India",
+    "coordinates": {"lat": 31.1048, "lon": 77.1734},
+    "timezone": "Asia/Kolkata",
+    "created_at": "2025-09-09T18:45:29+05:30",
+    "updated_at": "2025-09-09T18:45:29+05:30",
+    "group_size": {
+      "min": 1,
+      "max": 10 
     },
-    {
-      "day": 2,
-      "location": "Shimla, India",
-      "activities": [
-        {
-          "name": "Kufri Adventure Park",
-          "cost": 800,
-          "type": "adventure",
-          "bookingLink": "https://www.kufriadventure.com/book"
+    "description": {
+      "en": "Shimla, the capital of Himachal Pradesh, is a popular hill station known for its colonial architecture and scenic landscapes.",
+      "hi": "शिमला, हिमाचल प्रदेश की राजधानी, उपनिवेशी वास्तुकला और दृश्यात्मक परिदृश्यों के लिए प्रसिद्ध एक लोकप्रिय हिल स्टेशन है।"
+    },
+    "pois": [
+      {
+        "id": "SH1",
+        "name": {"en": "Mall Road", "hi": "माल रोड"},
+        "category": "Leisure",
+        "subcategory": "Promenade",
+        "description": {
+          "en": "The bustling heart of Shimla, Mall Road is lined with shops, cafes, and colonial-era buildings. Ideal for leisurely walks, shopping for woolens and handicrafts, and enjoying local cuisine.",
+          "hi": "शिमला का मुख्य शॉपिंग और पर्यटन क्षेत्र, जहां पर्यटक खरीदारी, खाने-पीने और स्थानीय संस्कृति का आनंद ले सकते हैं।"
         },
-        {
-          "name": "Christ Church Visit",
-          "cost": 0,
-          "type": "sightseeing",
-          "bookingLink": ""
+        "coordinates": {"lat": 31.104, "lon": 77.1703},
+        "rating": 4.5,
+        "cost": [
+          {"amount": 0, "currency": "INR", "type": "entry_fee", "category": "activity"},
+          {"amount": 0, "currency": "INR", "type": "activity_cost", "category": "activity"}
+        ],
+        "estimated_duration_minutes": 120,
+        "preference_category": ["nature_and_wildlife", "photography", "food_and_cuisine", "adventure_and_sports", "relaxation_and_wellness", "shopping"],
+        "accessibility": {"wheelchair_accessible": true, "pet_friendly": false},
+        "best_time_to_visit": {"start": "09:00", "end": "18:00"},
+        "weather_alerts": ["rain", "snow"]
+      },
+      {
+        "id": "SH2",
+        "name": {"en": "The Ridge", "hi": "द रिज"},
+        "category": "Sightseeing",
+        "subcategory": "Landmark",
+        "description": {
+          "en": "An open space offering panoramic views of the mountains. Venue for cultural events and festivals.",
+          "hi": "शिमला के दिल में एक बड़ा खुला स्थान, जो पैनोरमिक दृश्य प्रस्तुत करता है और सांस्कृतिक कार्यक्रमों और मेलों का आयोजन स्थल है।"
         },
-        {
-          "name": "Shimla State Museum",
-          "cost": 100,
-          "type": "cultural",
-          "bookingLink": ""
-        }
-      ],
-      "transport": {
-        "mode": "cab",
-        "cost": 500,
-        "provider": "Ola",
-        "bookingLink": "https://www.olacabs.com/"
+        "coordinates": {"lat": 31.1046, "lon": 77.1705},
+        "rating": 4.4,
+        "cost": [
+          {"amount": 0, "currency": "INR", "type": "entry_fee", "category": "activity"},
+          {"amount": 0, "currency": "INR", "type": "activity_cost", "category": "activity"}
+        ],
+        "estimated_duration_minutes": 120,
+        "preference_category": ["nature_and_wildlife", "photography", "relaxation_and_wellness", "shopping", "food_and_cuisine"],
+        "accessibility": {"wheelchair_accessible": true, "pet_friendly": false},
+        "best_time_to_visit": {"start": "08:00", "end": "18:00"},
+        "weather_alerts": ["wind", "snow"]
       },
-      "hotel": {
-        "name": "Hotel Himani",
-        "cost": 2500,
-        "provider": "Booking.com",
-        "bookingLink": "https://www.booking.com/hotel/in/hotel-himani.html"
+      {
+        "id": "SH3",
+        "name": {"en": "Jakhoo Temple", "hi": "जाखू मंदिर"},
+        "category": "Religious",
+        "subcategory": "Temple",
+        "description": {
+          "en": "A temple dedicated to Lord Hanuman located at Shimla's highest point. Offers scenic views and can be reached by hike or ropeway.",
+          "hi": "भगवान हनुमान को समर्पित मंदिर, जो शिमला के सबसे ऊंचे बिंदु पर स्थित है। हाइक या रोपवे द्वारा पहुंचा जा सकता है और शानदार दृश्य प्रदान करता है।"
+        },
+        "coordinates": {"lat": 31.1048, "lon": 77.1734},
+        "rating": 4.4,
+        "cost": [
+          {"amount": 0, "currency": "INR", "type": "entry_fee", "category": "activity"},
+          {"amount": 100, "currency": "INR", "type": "activity_cost", "category": "activity"}
+        ],
+        "estimated_duration_minutes": 120,
+        "preference_category": ["photography", "culture_and_history", "food_and_cuisine"],
+        "accessibility": {"wheelchair_accessible": false, "pet_friendly": false},
+        "best_time_to_visit": {"start": "07:00", "end": "11:00"},
+        "weather_alerts": ["rain", "snow", "slippery paths"]
       },
-      "totalDayCost": 3900
+      {
+        "id": "SH4",
+        "name": {"en": "Christ Church", "hi": "क्राइस्ट चर्च"},
+        "category": "Historical",
+        "subcategory": "Church",
+        "description": {
+          "en": "Built in 1857, it's the second oldest church in North India, known for neo-Gothic architecture and stained-glass windows.",
+          "hi": "1857 में निर्मित, यह उत्तर भारत का दूसरा सबसे पुराना चर्च है, जो नियो-गॉथिक वास्तुकला और स्टेन-ग्लास खिड़कियों के लिए प्रसिद्ध है।"
+        },
+        "coordinates": {"lat": 31.1048, "lon": 77.1703},
+        "rating": 4.5,
+        "cost": [
+          {"amount": 0, "currency": "INR", "type": "entry_fee", "category": "activity"},
+          {"amount": 0, "currency": "INR", "type": "activity_cost", "category": "activity"}
+        ],
+        "estimated_duration_minutes": 45,
+        "preference_category": ["photography", "culture_and_history", "food_and_cuisine"],
+        "accessibility": {"wheelchair_accessible": true, "pet_friendly": false},
+        "best_time_to_visit": {"start": "16:00", "end": "18:00"},
+        "weather_alerts": ["cold"]
+      },
+      {
+        "id": "SH5",
+        "name": {"en": "Kalka-Shimla Railway", "hi": "कालका–शिमला रेलवे"},
+        "category": "Heritage",
+        "subcategory": "Train Ride",
+        "description": {
+          "en": "A narrow-gauge railway connecting Kalka to Shimla, offering scenic journeys through mountains, tunnels, and bridges.",
+          "hi": "कालका से शिमला तक संकीर्ण गेज रेलवे, जो पहाड़ों, सुरंगों और पुलों के माध्यम से मनोरम यात्रा प्रदान करती है।"
+        },
+        "coordinates": {"lat": 31.1048, "lon": 77.1703},
+        "rating": 4.3,
+        "cost": [
+          {"amount": 0, "currency": "INR", "type": "entry_fee", "category": "activity"},
+          {"amount": 300, "currency": "INR", "type": "activity_cost", "category": "activity"}
+        ],
+        "estimated_duration_minutes": 300,
+        "preference_category": ["photography", "culture_and_history", "food_and_cuisine"],
+        "accessibility": {"wheelchair_accessible": true, "pet_friendly": false},
+        "best_time_to_visit": {"start": "07:00", "end": "12:00"},
+        "weather_alerts": ["fog", "snow"]
+      },
+      {
+        "id": "SH6",
+        "name": {"en": "Kufri", "hi": "कुफरी"},
+        "category": "Adventure",
+        "subcategory": "Hill Station",
+        "description": {
+          "en": "Famous for ski slopes, adventure park, and panoramic mountain views. Popular for snow activities in winter.",
+          "hi": "स्की ढलानों, एडवेंचर पार्क और हिमालय के मनोरम दृश्य के लिए प्रसिद्ध। सर्दियों में बर्फ गतिविधियों के लिए लोकप्रिय।"
+        },
+        "coordinates": {"lat": 31.0980, "lon": 77.2720},
+        "rating": 4.2,
+        "cost": [
+          {"amount": 0, "currency": "INR", "type": "entry_fee", "category": "activity"},
+          {"amount": 200, "currency": "INR", "type": "activity_cost", "category": "activity"}
+        ],
+        "estimated_duration_minutes": 240,
+        "preference_category": ["adventure_and_sports", "nature_and_wildlife", "photography", "relaxation_and_wellness"],
+        "accessibility": {"wheelchair_accessible": false, "pet_friendly": false},
+        "best_time_to_visit": {"start": "09:00", "end": "17:00"},
+        "weather_alerts": ["snow", "slippery roads"]
+      },
+      {
+        "id": "SH7",
+        "name": {"en": "Viceregal Lodge", "hi": "वाइसराय लॉज"},
+        "category": "Historical",
+        "subcategory": "Museum",
+        "description": {
+          "en": "Also known as Rashtrapati Niwas, the former summer residence of the British Viceroy. Houses a museum about India's independence.",
+          "hi": "राष्ट्रपति निवास के रूप में भी जाना जाता है, यह औपनिवेशिक काल का ग्रीष्मकालीन निवास था और अब भारत की स्वतंत्रता के इतिहास का संग्रहालय है।"
+        },
+        "coordinates": {"lat": 31.1048, "lon": 77.1703},
+        "rating": 4.3,
+        "cost": [
+          {"amount": 50, "currency": "INR", "type": "entry_fee", "category": "activity"},
+          {"amount": 0, "currency": "INR", "type": "activity_cost", "category": "activity"}
+        ],
+        "estimated_duration_minutes": 90,
+        "preference_category": ["photography", "culture_and_history", "food_and_cuisine"],
+        "accessibility": {"wheelchair_accessible": true, "pet_friendly": false},
+        "best_time_to_visit": {"start": "09:00", "end": "12:00"},
+        "weather_alerts": ["cold", "rain"]
+      },
+      {
+        "id": "SH8",
+        "name": {"en": "Chadwick Falls", "hi": "चाडविक फॉल्स"},
+        "category": "Nature",
+        "subcategory": "Waterfall",
+        "description": {
+          "en": "A 100-meter high waterfall amidst dense forests, offering a tranquil escape from the city. Best visited during monsoon.",
+          "hi": "घने जंगलों के बीच 100 मीटर ऊंचा जलप्रपात, जो शहर से शांति और प्राकृतिक सुंदरता का अनुभव प्रदान करता है। मानसून में जाने के लिए सर्वोत्तम।"
+        },
+        "coordinates": {"lat": 31.1048, "lon": 77.1703},
+        "rating": 4.1,
+        "cost": [
+          {"amount": 0, "currency": "INR", "type": "entry_fee", "category": "activity"},
+          {"amount": 0, "currency": "INR", "type": "activity_cost", "category": "activity"}
+        ],
+        "estimated_duration_minutes": 90,
+        "preference_category": ["adventure_and_sports", "nature_and_wildlife", "photography", "relaxation_and_wellness"],
+        "accessibility": {"wheelchair_accessible": false, "pet_friendly": false},
+        "best_time_to_visit": {"start": "10:00", "end": "16:00"},
+        "weather_alerts": ["rain", "slippery paths"]
+      }
+    ],
+    "accommodations": [
+      {
+        "id": "SHH1",
+        "name": {"en": "Snow View Hotel", "hi": "स्नो व्यू होटल"},
+        "coordinates": {"lat": 31.1040, "lon": 77.1750},
+        "rating": 4.0,
+        "cost_per_night": 1800,
+        "category": "budget",
+        "currency": "INR",
+        "amenities": ["wifi", "breakfast", "parking"],
+        "type": "3-star",
+        "accessibility": {"wheelchair_accessible": true, "pet_friendly": true}
+      },
+      {
+        "id": "SHH2",
+        "name": {"en": "The Oberoi Cecil", "hi": "द ओबेरॉय सेसिल"},
+        "coordinates": {"lat": 31.1045, "lon": 77.1700},
+        "rating": 4.7,
+        "cost_per_night": 9500,
+        "category": "luxury",
+        "currency": "INR",
+        "amenities": ["wifi", "spa", "restaurant", "parking"],
+        "type": "5-star",
+        "accessibility": {"wheelchair_accessible": true, "pet_friendly": false}
+      },
+      {
+        "id": "SHH3",
+        "name": {"en": "Clarkes Hotel", "hi": "क्लार्केस होटल"},
+        "coordinates": {"lat": 31.1050, "lon": 77.1708},
+        "rating": 4.2,
+        "cost_per_night": 3500,
+        "category": "mid-range",
+        "currency": "INR",
+        "amenities": ["wifi", "breakfast", "parking", "restaurant"],
+        "type": "4-star",
+        "accessibility": {"wheelchair_accessible": true, "pet_friendly": true}
+      }
+    ],
+    "transport": {
+      "scooter_rental": {"per_day": 300, "currency": "INR"},
+      "car_rental": {"average_fare": 3500, "currency": "INR"},
+      "bike_rental": {"per_day": 400, "currency": "INR"},
+      "bus_coach": {"per_day": 120, "currency": "INR"},
+      "train": {"average_fare": 1200, "currency": "INR"},
+      "domestic_flight": {"average_fare": 4000, "currency": "INR"}
+    },
+    "weather_alert": {
+      "sources": ["OpenWeatherMap", "AccuWeather"],
+      "thresholds": {"rain": "50mm", "landslide_risk": "high", "snow": "10cm", "cold": "0°C"}
     }
-  ],
-  "totalCost": 6950,
-  "status": "draft"
+  }
 }
+

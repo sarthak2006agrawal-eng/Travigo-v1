@@ -40,6 +40,6 @@ const itinerarySchema = new mongoose.Schema({
 
 }, { timestamps: true });
 
-const Itinenary = mongoose.model("Itinerary", itinerarySchema);
+const Itinerary = mongoose.model("Itinerary", itinerarySchema);
 
-export default Itinenary;
+export default Itinerary;

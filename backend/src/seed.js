@@ -53,7 +53,7 @@ const seedData = async () => {
   try {
     // 1. Connect to MongoDB using our connectDB helper
     await connectDB();
-    console.log("✅ Database connected successfully!");
+    console.log(" Database connected successfully!");
 
     // 2. Collect all destinations into an array
     //    (so we can loop through them instead of repeating code)
@@ -67,14 +67,14 @@ const seedData = async () => {
 
       // 4. Remove any existing entry for the same city (avoid duplicates)
       await Destination.findOneAndDelete({ "city.id": cityId });
-      console.log(`⚠️ Old data for ${cityId} deleted (if it existed).`);
+      console.log(` Old data for ${cityId} deleted (if it existed).`);
 
       // 5. Create a new Destination object using JSON data
       const newDest = new Destination(dest);
 
       // 6. Save new destination to database
       await newDest.save();
-      console.log(`✅ New data for ${dest.city.name} inserted successfully!`);
+      console.log(` New data for ${dest.city.name} inserted successfully!`);
     }
 
     // 7. Log final success message
@@ -85,7 +85,7 @@ const seedData = async () => {
 
   } catch (err) {
     // If error happens at any stage, catch it here
-    console.error("❌ Seeding error:", err);
+    console.error(" Seeding error:", err);
 
     // Exit process with failure code (1)
     process.exit(1);

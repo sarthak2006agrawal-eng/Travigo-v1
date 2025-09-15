@@ -1,53 +1,65 @@
-import mongoose from 'mongoose';
-import aggregatePaginate from 'mongoose-aggregate-paginate-v2'
+import mongoose from "mongoose";
+
 const itinerarySchema = new mongoose.Schema(
   {
-    userId: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'User',
-      required: true,
+    user: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
+
+    // Link to the destination (city chosen)
+    destination: { type: mongoose.Schema.Types.ObjectId, ref: "Destination", required: true },
+
+    // Trip basics
+    trip_name: { type: String, default: "My Trip" },
+    start_date: { type: Date, required: true },
+    end_date: { type: Date, required: true },
+    total_days: Number,
+
+    // Budget & style (user preference)
+    budget: { type: Number },
+    travel_style: {
+      type: String,
+      enum: ["luxury", "budget", "balanced"],
+      default: "balanced",
     },
 
-    plan: [
+    // Planned schedule per day
+    daily_plan: [
       {
-        day: Number,
-        location: String,
-
+        date: { type: Date, required: true },
         activities: [
           {
-            name: String,
-            cost: Number,
-            type: { type: String }, // e.g. sightseeing, adventure
-            bookingLink: String, // ✅ link to activity booking
+            poi: { type: mongoose.Schema.Types.ObjectId, ref: "Destination.city.pois" }, 
+            // referencing a POI inside destination
+            accommodation: { type: mongoose.Schema.Types.ObjectId, ref: "Destination.city.accommodations" },
+            transport_mode: String,
+            notes: String,
+            estimated_cost: Number,
           },
         ],
-
-        transport: {
-          mode: String, // e.g. bus, train, cab
-          cost: Number,
-          provider: String, // e.g. IRCTC, Uber
-          bookingLink: String, // ✅ link to transport booking
-        },
-
-        hotel: {
-          name: String,
-          cost: Number,
-          provider: String, // e.g. OYO, Booking.com
-          bookingLink: String, // ✅ link to hotel booking
-        },
-
-        totalDayCost: Number,
       },
     ],
 
-    totalCost: Number,
-    status: { type: String, enum: ['draft', 'final'], default: 'draft' },
+    // Cost summary
+    cost_breakdown: {
+      transport: Number,
+      accommodation: Number,
+      activities: Number,
+      total: Number,
+      currency: { type: String, default: "INR" },
+    },
+
+    // Status
+    status: {
+      type: String,
+      enum: ["draft", "confirmed", "completed", "cancelled"],
+      default: "draft",
+    },
+
+    created_at: { type: Date, default: Date.now },
+    updated_at: { type: Date, default: Date.now },
   },
   { timestamps: true }
 );
 
-itinerarySchema.plugin(aggregatePaginate);
+const Itinerary = mongoose.model("Itinerary", itinerarySchema);
 
-const Itinenary = mongoose.model('Itinerary', itinerarySchema);
-
-export default Itinenary;
+export default Itinerary;

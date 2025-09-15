@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-
+import aggregatePaginate from 'mongoose-aggregate-paginate-v2'
 const itinerarySchema = new mongoose.Schema(
   {
     userId: {
@@ -45,6 +45,8 @@ const itinerarySchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
+
+itinerarySchema.plugin(aggregatePaginate);
 
 const Itinenary = mongoose.model('Itinerary', itinerarySchema);
 

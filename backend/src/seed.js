@@ -78,7 +78,7 @@ const seedData = async () => {
     }
 
     // 7. Log final success message
-    console.log("🎉 All destination data seeded successfully!");
+    console.log(" All destination data seeded successfully!");
 
     // 8. Exit process with success code
     process.exit(0);

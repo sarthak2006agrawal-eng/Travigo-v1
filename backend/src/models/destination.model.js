@@ -31,7 +31,7 @@ const destinationSchema = new mongoose.Schema({
     // ✅ To control how many people can plan trips to this destination
     group_size: {
       min: { type: Number, default: 1 },
-      max: { type: Number, default: 10 }
+      max: { type: Number, default: 20 }
     },
 
     // ✅ City description in multiple languages (currently English + Hindi)

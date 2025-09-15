@@ -4,7 +4,11 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "dev": "nodemon -r dotenv/config src/index.js"
+    "dev": "nodemon -r dotenv/config src/index.js",
+    "validate": "node src/validateData.js",
+    "validate:enhanced": "node src/validateDataEnhanced.js",
+    "validate:fix": "node src/validateDataEnhanced.js --fix",
+    "seed": "node src/seed.js"
   },
   "keywords": [],
   "author": "",

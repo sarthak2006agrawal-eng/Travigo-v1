@@ -1,0 +1,20 @@
+{
+  "timestamp": "2025-09-15T04:05:11.032Z",
+  "summary": {
+    "status": "PASS",
+    "errors": 0,
+    "warnings": 0,
+    "fixes": 0
+  },
+  "errors": [],
+  "warnings": [],
+  "fixes": [],
+  "statistics": {
+    "cities": 3,
+    "pois": 18,
+    "accommodations": 9,
+    "totalErrors": 0,
+    "totalWarnings": 0,
+    "totalFixes": 0
+  }
+}

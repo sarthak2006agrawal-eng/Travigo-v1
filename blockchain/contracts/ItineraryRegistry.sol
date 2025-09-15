@@ -2,16 +2,23 @@
 pragma solidity ^0.8.20;
 
 contract ItineraryRegistry {
-    event ItineraryStored(address indexed user, bytes32 indexed hash, uint256 timestamp);
-
-    mapping(bytes32 => uint256) public storedAt;
-
-    function storeItinerary(bytes32 hash) external {
-        storedAt[hash] = block.timestamp;
-        emit ItineraryStored(msg.sender, hash, block.timestamp);
+    struct Itinerary {
+        string mongoId;   // store the MongoDB _id as string (or hash)
+        address creator;
+        uint256 date;
     }
 
-    function exists(bytes32 hash) external view returns (bool) {
-        return storedAt[hash] != 0;
+    mapping(uint256 => Itinerary) public itineraries;
+    uint256 public itineraryCount;
+
+    event ItineraryCreated(uint256 indexed blockchainId, string mongoId, address creator, uint256 date);
+
+    function createItinerary(string memory _mongoId, uint256 _date) public {
+        itineraries[itineraryCount] = Itinerary(_mongoId, msg.sender, _date);
+
+        emit ItineraryCreated(itineraryCount, _mongoId, msg.sender, _date);
+
+        itineraryCount++;
     }
 }
+

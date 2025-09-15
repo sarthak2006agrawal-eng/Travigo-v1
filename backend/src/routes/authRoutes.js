@@ -6,8 +6,8 @@ import {
   logout,
   getProfile,
   updateProfile,
-} from "../controllers/auth.controllers.js";
-import protect from "../middlewares/auth.middleware.js";
+} from "../controllers/authController.js";
+import protect from "../middleware/authMiddleware.js";
 
 const router = express.Router();
 

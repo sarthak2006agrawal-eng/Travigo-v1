@@ -1,12 +1,13 @@
 import { Schema, model } from 'mongoose';
-import bycrypt from 'bcryptjs';
+import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
+
 const kycSchema = new Schema({
-  documnetType: {
+  documentType: {
     type: String,
     enum: ['passport', 'driver_license', 'aadhar_card', 'pan_card'],
     required: true,
   },
-
   documentNumber: { type: String, required: true, unique: true },
   verified: { type: Boolean, default: false },
   verifiedAt: { type: Date },
@@ -30,31 +31,37 @@ const userSchema = new Schema(
     },
 
     kyc: kycSchema,
-
     blockchainId: { type: String },
+    refreshToken: { type: String }, // needed for refresh
   },
   { timestamps: true }
 );
 
-userSchema.pre('save', async function(next){
-  if(!this.isModified('password')) return next();
-
-  this.passwsord = await bycrypt.hash(this.password, 10);
+userSchema.pre('save', async function (next) {
+  if (!this.isModified('password')) return next();
+  this.password = await bcrypt.hash(this.password, 10);
   next();
-})  
+});
 
-userSchema.methods.comparePassword = async function(){
-  return await bycrypt.compare(password,rhis.password);
-}
-
-userSchema.methods.generateAccessToken = function() {
-  return jwt.sign({ userId: this._id }, process.env.ACCESS_TOKEN_SECRET, {expiresIn: process.env.ACCESS_TOKEN_EXPIRY});
+userSchema.methods.comparePassword = async function (enteredPassword) {
+  return await bcrypt.compare(enteredPassword, this.password);
 };
 
-userSchema.methods.generateRefreshToken = function() {
-  return jwt.sign({ userId: this._id }, process.env.REFRESH_TOKEN_SECRET, {expiresIn: process.env.REFRESH_TOKEN_EXPIRY});
+userSchema.methods.generateAccessToken = function () {
+  return jwt.sign(
+    { userId: this._id },
+    process.env.ACCESS_TOKEN_SECRET,
+    { expiresIn: process.env.ACCESS_TOKEN_EXPIRY }
+  );
 };
 
-const User = new model('User', userSchema);
+userSchema.methods.generateRefreshToken = function () {
+  return jwt.sign(
+    { userId: this._id },
+    process.env.REFRESH_TOKEN_SECRET,
+    { expiresIn: process.env.REFRESH_TOKEN_EXPIRY }
+  );
+};
 
+const User = model('User', userSchema);
 export default User;

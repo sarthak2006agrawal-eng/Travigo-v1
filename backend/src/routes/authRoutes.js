@@ -1,7 +1,24 @@
-import { Router } from "express";
-import {registerUser} from "../controllers/authController.js"
-const authRouter=new Router();
+import express from "express";
+import {
+  register,
+  login,
+  refreshAccessToken,
+  logout,
+  getProfile,
+  updateProfile,
+} from "../controllers/auth.controllers.js";
+import protect from "../middlewares/auth.middleware.js";
 
-authRouter.route('/register').post(registerUser);
+const router = express.Router();
 
-export default authRouter;
+// Public routes
+router.post("/register", register);
+router.post("/login", login);
+router.post("/refresh", refreshAccessToken);
+
+// Protected routes
+router.post("/logout", protect, logout);
+router.get("/profile", protect, getProfile);
+router.put("/profile", protect, updateProfile);
+
+export default router;

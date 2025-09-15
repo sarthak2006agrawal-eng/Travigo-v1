@@ -8,7 +8,6 @@ const bookingSchema = new mongoose.Schema(
       required: true,
     },
     itineraryId: {
-
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Itinerary',
       required: true,

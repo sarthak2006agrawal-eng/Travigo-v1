@@ -20,16 +20,13 @@ const userSchema = new Schema(
     password: { type: String, required: true },
 
     preferences: {
-      budget: { type: Number, default: 0 },
-      interests: [String],
-      locations: [String],
       travelStyle: {
         type: String,
         enum: ['luxury', 'budget', 'balanced'],
         default: 'balanced',
       },
+      interests: [String], // e.g. ["nature", "foodie", "history"]
     },
-
     kyc: kycSchema,
     blockchainId: { type: String },
     refreshToken: { type: String }, // needed for refresh
@@ -48,19 +45,15 @@ userSchema.methods.comparePassword = async function (enteredPassword) {
 };
 
 userSchema.methods.generateAccessToken = function () {
-  return jwt.sign(
-    { userId: this._id },
-    process.env.ACCESS_TOKEN_SECRET,
-    { expiresIn: process.env.ACCESS_TOKEN_EXPIRY }
-  );
+  return jwt.sign({ userId: this._id }, process.env.ACCESS_TOKEN_SECRET, {
+    expiresIn: process.env.ACCESS_TOKEN_EXPIRY,
+  });
 };
 
 userSchema.methods.generateRefreshToken = function () {
-  return jwt.sign(
-    { userId: this._id },
-    process.env.REFRESH_TOKEN_SECRET,
-    { expiresIn: process.env.REFRESH_TOKEN_EXPIRY }
-  );
+  return jwt.sign({ userId: this._id }, process.env.REFRESH_TOKEN_SECRET, {
+    expiresIn: process.env.REFRESH_TOKEN_EXPIRY,
+  });
 };
 
 const User = model('User', userSchema);

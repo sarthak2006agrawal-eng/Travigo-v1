@@ -6,9 +6,9 @@ import jwt from "jsonwebtoken";
 
 // ================== Register ==================
 export const register = asyncHandler(async (req, res) => {
-  const { name, email, password } = req.body;
+  const { name, email, password, phone } = req.body;
 
-  if (!name || !email || !password) {
+  if (!name || !email || !password || !phone) {
     throw new ApiError("All fields are required", 400);
   }
 
@@ -17,7 +17,7 @@ export const register = asyncHandler(async (req, res) => {
     throw new ApiError("User already exists", 400);
   }
 
-  const user = await User.create({ name, email, password });
+  const user = await User.create({ name, email, password, phone });
 
   const accessToken = user.generateAccessToken();
   const refreshToken = user.generateRefreshToken();
@@ -35,7 +35,7 @@ export const register = asyncHandler(async (req, res) => {
   });
 
   return new ApiResponse(201, "User registered successfully", {
-    user: { id: user._id, name: user.name, email: user.email },
+    user: { id: user._id, name: user.name, email: user.email, phone: user.phone },
     accessToken,
     refreshToken,
   }).send(res);
@@ -154,7 +154,7 @@ export const getProfile = asyncHandler(async (req, res) => {
 
 export const updateProfile = asyncHandler(async (req, res) => {
   const updates = req.body;
-  const allowedUpdates = ["name", "email", "preferences", "password"];
+  const allowedUpdates = ["name", "email", "preferences", "password", "phone"];
   const updateData = {};
 
   Object.keys(updates).forEach((key) => {

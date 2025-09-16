@@ -5,8 +5,8 @@ import {
   getItineraryById,
   updateItinerary,
   deleteItinerary
-} from "../controllers/itinerary.controller.js";
-import protect from "../middlewares/auth.middleware.js";
+} from "../controllers/itineraryController.js";
+import protect from "../middleware/authMiddleware.js";
 
 const router = express.Router();
 

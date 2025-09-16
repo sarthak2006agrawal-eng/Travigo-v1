@@ -13,7 +13,7 @@ const Signup = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [formData, setFormData] = useState({
-    Name: "",
+    name: "",
     email: "",
     phone: "",
     password: "",
@@ -31,7 +31,7 @@ const Signup = () => {
     // Basic validation
     const newErrors: { [key: string]: string } = {};
     
-    if (!formData.Name.trim()) newErrors.Name = "Name is required";
+    if (!formData.name.trim()) newErrors.name = "Name is required";
     if (!formData.email.trim()) newErrors.email = "Email is required";
     if (!formData.phone.trim()) newErrors.phone = "Phone number is required";
     if (!formData.password) newErrors.password = "Password is required";
@@ -45,7 +45,7 @@ const Signup = () => {
     if (Object.keys(newErrors).length === 0) {
       try {
         const userData = {
-          name: `${formData.Name}`,
+          name: `${formData.name}`,
           email: formData.email,
           password: formData.password,
           phone: formData.phone,
@@ -114,11 +114,11 @@ const Signup = () => {
                   <div className="relative">
                     <User className="absolute left-3 top-3 h-5 w-5 text-muted-foreground" />
                     <Input
-                      id="Name"
-                      name="Name"
+                      id="name"
+                      name="name"
                       type="text"
                       placeholder="John"
-                      value={formData.Name}
+                      value={formData.name}
                       onChange={handleInputChange}
                       className={`travel-input pl-10 ${errors.Name ? 'border-destructive' : ''}`}
                       required

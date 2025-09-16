@@ -34,8 +34,8 @@ const itinerarySchema = new mongoose.Schema(
         date: { type: Date, required: true },
         activities: [
           {
-            poi_id: { type: String }, // ID of a POI inside destination.pois
-            accommodation_id: { type: String }, // ID of an accommodation inside destination.accommodations
+            poi_id: { type: mongoose.Schema.Types.ObjectId }, // refers to destination.pois._id
+            accommodation_id: { type: mongoose.Schema.Types.ObjectId }, // refers to destination.accommodations._id
             transport_mode: String,
             notes: String,
             estimated_cost: Number,

@@ -5,12 +5,12 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { 
-  User, 
-  MapPin, 
-  Calendar, 
-  Plus, 
-  Settings, 
+import {
+  User,
+  MapPin,
+  Calendar,
+  Plus,
+  Settings,
   FileText,
   CheckCircle,
   Clock,
@@ -18,7 +18,7 @@ import {
   Hotel,
   Camera,
   DollarSign,
-  Edit
+  Edit,
 } from "lucide-react";
 
 const Dashboard = () => {
@@ -32,9 +32,9 @@ const Dashboard = () => {
       travelType: "Adventure",
       budget: "$2000-5000",
       accommodation: "Hotels",
-      interests: ["Hiking", "Photography", "Local Cuisine"]
+      interests: ["Hiking", "Photography", "Local Cuisine"],
     },
-    kycStatus: "verified"
+    kycStatus: "verified",
   });
 
   // Mock itineraries data
@@ -49,7 +49,7 @@ const Dashboard = () => {
       budget: 4500,
       image: "/placeholder.svg",
       activities: 12,
-      hotels: 3
+      hotels: 3,
     },
     {
       id: 2,
@@ -61,7 +61,7 @@ const Dashboard = () => {
       budget: 3200,
       image: "/placeholder.svg",
       activities: 8,
-      hotels: 2
+      hotels: 2,
     },
     {
       id: 3,
@@ -73,25 +73,33 @@ const Dashboard = () => {
       budget: 2800,
       image: "/placeholder.svg",
       activities: 6,
-      hotels: 2
-    }
+      hotels: 2,
+    },
   ]);
 
   const getStatusColor = (status: string) => {
     switch (status) {
-      case "confirmed": return "bg-green-500/10 text-green-700 border-green-200";
-      case "planning": return "bg-blue-500/10 text-blue-700 border-blue-200";
-      case "draft": return "bg-gray-500/10 text-gray-700 border-gray-200";
-      default: return "bg-gray-500/10 text-gray-700 border-gray-200";
+      case "confirmed":
+        return "bg-green-500/10 text-green-700 border-green-200";
+      case "planning":
+        return "bg-blue-500/10 text-blue-700 border-blue-200";
+      case "draft":
+        return "bg-gray-500/10 text-gray-700 border-gray-200";
+      default:
+        return "bg-gray-500/10 text-gray-700 border-gray-200";
     }
   };
 
   const getStatusIcon = (status: string) => {
     switch (status) {
-      case "confirmed": return <CheckCircle className="h-4 w-4" />;
-      case "planning": return <Clock className="h-4 w-4" />;
-      case "draft": return <FileText className="h-4 w-4" />;
-      default: return <FileText className="h-4 w-4" />;
+      case "confirmed":
+        return <CheckCircle className="h-4 w-4" />;
+      case "planning":
+        return <Clock className="h-4 w-4" />;
+      case "draft":
+        return <FileText className="h-4 w-4" />;
+      default:
+        return <FileText className="h-4 w-4" />;
     }
   };
 
@@ -101,8 +109,12 @@ const Dashboard = () => {
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-8">
           <div>
-            <h1 className="text-3xl font-bold mb-2">Welcome back, {user.name.split(' ')[0]}!</h1>
-            <p className="text-muted-foreground">Ready for your next adventure?</p>
+            <h1 className="text-3xl font-bold mb-2">
+              Welcome back, {user.name.split(" ")[0]}!
+            </h1>
+            <p className="text-muted-foreground">
+              Ready for your next adventure?
+            </p>
           </div>
           <div className="flex items-center gap-3 mt-4 md:mt-0">
             <Link to="/create-itinerary">
@@ -134,7 +146,9 @@ const Dashboard = () => {
                 <CardContent className="p-6">
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="text-sm text-muted-foreground">Total Trips</p>
+                      <p className="text-sm text-muted-foreground">
+                        Total Trips
+                      </p>
                       <p className="text-2xl font-bold">{itineraries.length}</p>
                     </div>
                     <MapPin className="h-8 w-8 text-primary" />
@@ -145,7 +159,9 @@ const Dashboard = () => {
                 <CardContent className="p-6">
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="text-sm text-muted-foreground">Countries Visited</p>
+                      <p className="text-sm text-muted-foreground">
+                        Countries Visited
+                      </p>
                       <p className="text-2xl font-bold">12</p>
                     </div>
                     <Plane className="h-8 w-8 text-primary" />
@@ -156,7 +172,9 @@ const Dashboard = () => {
                 <CardContent className="p-6">
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="text-sm text-muted-foreground">Total Savings</p>
+                      <p className="text-sm text-muted-foreground">
+                        Total Savings
+                      </p>
                       <p className="text-2xl font-bold">$2.4K</p>
                     </div>
                     <DollarSign className="h-8 w-8 text-primary" />
@@ -167,8 +185,12 @@ const Dashboard = () => {
                 <CardContent className="p-6">
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="text-sm text-muted-foreground">KYC Status</p>
-                      <p className="text-2xl font-bold text-green-600">Verified</p>
+                      <p className="text-sm text-muted-foreground">
+                        KYC Status
+                      </p>
+                      <p className="text-2xl font-bold text-green-600">
+                        Verified
+                      </p>
                     </div>
                     <CheckCircle className="h-8 w-8 text-green-600" />
                   </div>
@@ -181,7 +203,10 @@ const Dashboard = () => {
               <CardHeader>
                 <CardTitle className="flex items-center justify-between">
                   Recent Trips
-                  <Link to="#" className="text-primary hover:text-primary-glow transition-smooth text-sm font-normal">
+                  <Link
+                    to="#"
+                    className="text-primary hover:text-primary-glow transition-smooth text-sm font-normal"
+                  >
                     View All
                   </Link>
                 </CardTitle>
@@ -189,14 +214,19 @@ const Dashboard = () => {
               <CardContent>
                 <div className="space-y-4">
                   {itineraries.slice(0, 2).map((trip) => (
-                    <div key={trip.id} className="flex items-center justify-between p-4 rounded-lg border border-border/50 hover:bg-accent/50 transition-smooth">
+                    <div
+                      key={trip.id}
+                      className="flex items-center justify-between p-4 rounded-lg border border-border/50 hover:bg-accent/50 transition-smooth"
+                    >
                       <div className="flex items-center space-x-4">
                         <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
                           <MapPin className="h-6 w-6 text-primary" />
                         </div>
                         <div>
                           <h4 className="font-semibold">{trip.title}</h4>
-                          <p className="text-sm text-muted-foreground">{trip.destination}</p>
+                          <p className="text-sm text-muted-foreground">
+                            {trip.destination}
+                          </p>
                         </div>
                       </div>
                       <div className="text-right">
@@ -204,7 +234,9 @@ const Dashboard = () => {
                           {getStatusIcon(trip.status)}
                           <span className="ml-1 capitalize">{trip.status}</span>
                         </Badge>
-                        <p className="text-sm text-muted-foreground mt-1">${trip.budget.toLocaleString()}</p>
+                        <p className="text-sm text-muted-foreground mt-1">
+                          ${trip.budget.toLocaleString()}
+                        </p>
                       </div>
                     </div>
                   ))}
@@ -226,24 +258,34 @@ const Dashboard = () => {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {itineraries.map((trip) => (
-                <Card key={trip.id} className="travel-card group hover:shadow-travel hover:scale-105 transition-smooth">
+                <Card
+                  key={trip.id}
+                  className="travel-card group hover:shadow-travel hover:scale-105 transition-smooth"
+                >
                   <div className="aspect-video relative overflow-hidden rounded-t-xl">
                     <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-primary-glow/20 flex items-center justify-center">
                       <Camera className="h-12 w-12 text-white/60" />
                     </div>
-                    <Badge className={`absolute top-3 right-3 ${getStatusColor(trip.status)}`}>
+                    <Badge
+                      className={`absolute top-3 right-3 ${getStatusColor(
+                        trip.status
+                      )}`}
+                    >
                       {getStatusIcon(trip.status)}
                       <span className="ml-1 capitalize">{trip.status}</span>
                     </Badge>
                   </div>
                   <CardContent className="p-6">
                     <h3 className="font-bold text-lg mb-2">{trip.title}</h3>
-                    <p className="text-muted-foreground mb-4">{trip.destination}</p>
-                    
+                    <p className="text-muted-foreground mb-4">
+                      {trip.destination}
+                    </p>
+
                     <div className="space-y-2 mb-4">
                       <div className="flex items-center text-sm text-muted-foreground">
                         <Calendar className="h-4 w-4 mr-2" />
-                        {new Date(trip.startDate).toLocaleDateString()} - {new Date(trip.endDate).toLocaleDateString()}
+                        {new Date(trip.startDate).toLocaleDateString()} -{" "}
+                        {new Date(trip.endDate).toLocaleDateString()}
                       </div>
                       <div className="flex items-center justify-between text-sm">
                         <span className="flex items-center text-muted-foreground">
@@ -258,7 +300,9 @@ const Dashboard = () => {
                     </div>
 
                     <div className="flex items-center justify-between">
-                      <span className="text-lg font-bold text-primary">${trip.budget.toLocaleString()}</span>
+                      <span className="text-lg font-bold text-primary">
+                        ${trip.budget.toLocaleString()}
+                      </span>
                       <Button variant="outline" size="sm">
                         <Edit className="h-4 w-4 mr-2" />
                         Edit Trip
@@ -290,7 +334,10 @@ const Dashboard = () => {
                     <Avatar className="h-20 w-20">
                       <AvatarImage src={user.avatar} />
                       <AvatarFallback className="bg-primary/10 text-primary text-xl">
-                        {user.name.split(' ').map(n => n[0]).join('')}
+                        {user.name
+                          .split(" ")
+                          .map((n) => n[0])
+                          .join("")}
                       </AvatarFallback>
                     </Avatar>
                     <div>
@@ -302,28 +349,44 @@ const Dashboard = () => {
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                      <label className="text-sm font-medium text-muted-foreground">Travel Type</label>
-                      <p className="font-semibold">{user.preferences.travelType}</p>
+                      <label className="text-sm font-medium text-muted-foreground">
+                        Travel Type
+                      </label>
+                      <p className="font-semibold">
+                        {user.preferences.travelType}
+                      </p>
                     </div>
                     <div>
-                      <label className="text-sm font-medium text-muted-foreground">Budget Range</label>
+                      <label className="text-sm font-medium text-muted-foreground">
+                        Budget Range
+                      </label>
                       <p className="font-semibold">{user.preferences.budget}</p>
                     </div>
                     <div>
-                      <label className="text-sm font-medium text-muted-foreground">Accommodation</label>
-                      <p className="font-semibold">{user.preferences.accommodation}</p>
+                      <label className="text-sm font-medium text-muted-foreground">
+                        Accommodation
+                      </label>
+                      <p className="font-semibold">
+                        {user.preferences.accommodation}
+                      </p>
                     </div>
                     <div>
-                      <label className="text-sm font-medium text-muted-foreground">KYC Status</label>
+                      <label className="text-sm font-medium text-muted-foreground">
+                        KYC Status
+                      </label>
                       <div className="flex items-center space-x-2">
                         <CheckCircle className="h-4 w-4 text-green-600" />
-                        <span className="font-semibold text-green-600">Verified</span>
+                        <span className="font-semibold text-green-600">
+                          Verified
+                        </span>
                       </div>
                     </div>
                   </div>
 
                   <div>
-                    <label className="text-sm font-medium text-muted-foreground">Interests</label>
+                    <label className="text-sm font-medium text-muted-foreground">
+                      Interests
+                    </label>
                     <div className="flex flex-wrap gap-2 mt-2">
                       {user.preferences.interests.map((interest, index) => (
                         <Badge key={index} variant="secondary">

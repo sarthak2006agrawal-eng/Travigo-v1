@@ -15,12 +15,12 @@ app.use(cookieParser());
 import authRouter from './routes/authRoutes.js'; 
 import userRoutes from './routes/userRoute.js';
 import itineraryRoutes from './routes/itineraryRoutes.js';
-import destinationRoutes from './routes/destinationRoutes.js';
+// import destinationRoutes from './routes/destinationRoutes.js';
 
 app.use('/api/v1/auth', authRouter);
 app.use("/api/users", userRoutes);
 app.use("/api/itineraries", itineraryRoutes);
-app.use("/api/destinations", destinationRoutes);
+// app.use("/api/destinations", destinationRoutes);
 
 
 

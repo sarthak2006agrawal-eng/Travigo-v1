@@ -10,4 +10,8 @@ router.patch("/preferences", protect, updatePreferences);
 // ✅ Get preferences
 router.get("/preferences", protect, getPreferences);
 
+import { submitKYC } from "../controllers/kyc.controller.js";
+// Submit KYC
+router.post("/", protect, submitKYC);
+
 export default router;

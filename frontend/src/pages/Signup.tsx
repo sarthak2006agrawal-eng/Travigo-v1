@@ -1,18 +1,19 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Eye, EyeOff, Mail, Lock, User, Phone, Plane } from "lucide-react";
+import { authService } from "@/services/authService";
+import { toast } from "sonner";
 
 const Signup = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
+    Name: "",
     email: "",
     phone: "",
     password: "",
@@ -22,14 +23,15 @@ const Signup = () => {
   });
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     // Basic validation
     const newErrors: { [key: string]: string } = {};
     
-    if (!formData.firstName.trim()) newErrors.firstName = "First name is required";
-    if (!formData.lastName.trim()) newErrors.lastName = "Last name is required";
+    if (!formData.Name.trim()) newErrors.Name = "Name is required";
     if (!formData.email.trim()) newErrors.email = "Email is required";
     if (!formData.phone.trim()) newErrors.phone = "Phone number is required";
     if (!formData.password) newErrors.password = "Password is required";
@@ -41,8 +43,26 @@ const Signup = () => {
     setErrors(newErrors);
 
     if (Object.keys(newErrors).length === 0) {
-      // TODO: Implement actual signup logic when Supabase is connected
-      console.log("Signup attempt:", formData);
+      try {
+        const userData = {
+          name: `${formData.Name}`,
+          email: formData.email,
+          password: formData.password,
+          phone: formData.phone,
+        };
+        
+        const response = await authService.register(userData);
+        toast.success("Account created successfully!", {
+          description: response.message || "Welcome to Travigo!"
+        });
+        
+        // Navigate to dashboard or profile setup
+        navigate("/dashboard");
+      } catch (error: any) {
+        toast.error("Registration failed", {
+          description: error.message || "Please try again"
+        });
+      }
     }
   };
 
@@ -86,47 +106,26 @@ const Signup = () => {
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-5">
               {/* Name Fields */}
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols gap-4">
                 <div className="space-y-2">
                   <Label htmlFor="firstName" className="text-sm font-medium">
-                    First Name
+                    Full Name
                   </Label>
                   <div className="relative">
                     <User className="absolute left-3 top-3 h-5 w-5 text-muted-foreground" />
                     <Input
-                      id="firstName"
-                      name="firstName"
+                      id="Name"
+                      name="Name"
                       type="text"
                       placeholder="John"
-                      value={formData.firstName}
+                      value={formData.Name}
                       onChange={handleInputChange}
-                      className={`travel-input pl-10 ${errors.firstName ? 'border-destructive' : ''}`}
+                      className={`travel-input pl-10 ${errors.Name ? 'border-destructive' : ''}`}
                       required
                     />
                   </div>
-                  {errors.firstName && (
+                  {errors.Name && (
                     <p className="text-xs text-destructive">{errors.firstName}</p>
-                  )}
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="lastName" className="text-sm font-medium">
-                    Last Name
-                  </Label>
-                  <div className="relative">
-                    <User className="absolute left-3 top-3 h-5 w-5 text-muted-foreground" />
-                    <Input
-                      id="lastName"
-                      name="lastName"
-                      type="text"
-                      placeholder="Doe"
-                      value={formData.lastName}
-                      onChange={handleInputChange}
-                      className={`travel-input pl-10 ${errors.lastName ? 'border-destructive' : ''}`}
-                      required
-                    />
-                  </div>
-                  {errors.lastName && (
-                    <p className="text-xs text-destructive">{errors.lastName}</p>
                   )}
                 </div>
               </div>

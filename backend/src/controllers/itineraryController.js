@@ -342,3 +342,4 @@ export const deleteItinerary = asyncHandler(async (req, res) => {
 
   return new ApiResponse(200, 'Itinerary deleted successfully').send(res);
 });
+

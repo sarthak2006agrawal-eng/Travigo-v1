@@ -1,11 +1,13 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { Eye, EyeOff, Mail, Lock, Plane } from "lucide-react";
+import { authService } from "@/services/authService";
+import { toast } from "sonner";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -14,10 +16,28 @@ const Login = () => {
     password: "",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // TODO: Implement actual login logic when Supabase is connected
-    console.log("Login attempt:", formData);
+    
+    try {
+      const response = await authService.login({
+        email: formData.email,
+        password: formData.password,
+      });
+      
+      toast.success("Login successful!", {
+        description: response.message || "Welcome back to Travigo!"
+      });
+      
+      // Navigate to dashboard
+      navigate("/dashboard");
+    } catch (error: any) {
+      toast.error("Login failed", {
+        description: error.message || "Invalid email or password"
+      });
+    }
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {

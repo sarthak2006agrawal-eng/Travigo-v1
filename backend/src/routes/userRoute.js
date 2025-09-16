@@ -1,6 +1,6 @@
 import express from "express";
-import protect from "../middlewares/auth.middleware.js";
-import { updatePreferences, getPreferences } from "../controllers/user.controller.js";
+import protect from "../middleware/authMiddleware.js";
+import { updatePreferences, getPreferences } from "../controllers/userController.js";
 
 const router = express.Router();
 
@@ -10,7 +10,7 @@ router.patch("/preferences", protect, updatePreferences);
 // ✅ Get preferences
 router.get("/preferences", protect, getPreferences);
 
-import { submitKYC } from "../controllers/kyc.controller.js";
+import { submitKYC } from "../controllers/kycController.js";
 // Submit KYC
 router.post("/", protect, submitKYC);
 

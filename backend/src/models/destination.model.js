@@ -50,6 +50,7 @@ const destinationSchema = new mongoose.Schema(
       // ✅ POIs (Points of Interest: attractions, activities)
       pois: [
         {
+          _id: { type: mongoose.Schema.Types.ObjectId, auto: true },
           id: { type: String, required: true },
           name: {
             en: { type: String },
@@ -91,6 +92,7 @@ const destinationSchema = new mongoose.Schema(
       // ✅ Accommodations (hotels, stays, resorts)
       accommodations: [
         {
+          _id: { type: mongoose.Schema.Types.ObjectId, auto: true },
           id: { type: String, required: true },
           name: {
             en: String,

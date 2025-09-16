@@ -1,0 +1,200 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Travigo Design System - Modern Travel Platform */
+
+@layer base {
+  :root {
+    /* Core Theme - Bright Green & Sophisticated Black */
+    --background: 0 0% 98%;
+    --foreground: 220 20% 10%;
+    
+    --card: 0 0% 100%;
+    --card-foreground: 220 20% 10%;
+    
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 20% 10%;
+    
+    /* Travel Green Primary */
+    --primary: 142 76% 36%;
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 142 76% 45%;
+    
+    /* Sophisticated Secondary */
+    --secondary: 220 14% 96%;
+    --secondary-foreground: 220 20% 10%;
+    
+    /* Muted Tones */
+    --muted: 220 14% 96%;
+    --muted-foreground: 220 13% 46%;
+    
+    /* Accent Colors */
+    --accent: 142 76% 95%;
+    --accent-foreground: 142 76% 25%;
+    
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 142 76% 36%;
+    
+    --radius: 0.75rem;
+    
+    /* Travel-specific Design Tokens */
+    --travel-green: 142 76% 36%;
+    --travel-green-light: 142 76% 45%;
+    --travel-green-lighter: 142 76% 95%;
+    --travel-dark: 220 25% 8%;
+    --travel-dark-lighter: 220 20% 15%;
+    
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--travel-green)) 0%, hsl(var(--travel-green-light)) 100%);
+    --gradient-hero: linear-gradient(135deg, hsl(var(--travel-dark)) 0%, hsl(var(--travel-green-light)) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 100% / 0.1) 0%, hsl(0 0% 100% / 0.05) 100%);
+    
+    /* Shadows */
+    --shadow-soft: 0 4px 20px hsl(var(--travel-green) / 0.1);
+    --shadow-travel: 0 10px 40px hsl(var(--travel-green) / 0.15);
+    --shadow-glow: 0 0 30px hsl(var(--travel-green) / 0.3);
+    
+    /* Animation Variables */
+    --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    /* Dark Theme for Travel Platform */
+    --background: 220 25% 8%;
+    --foreground: 0 0% 95%;
+
+    --card: 220 20% 12%;
+    --card-foreground: 0 0% 95%;
+
+    --popover: 220 20% 12%;
+    --popover-foreground: 0 0% 95%;
+
+    --primary: 142 76% 45%;
+    --primary-foreground: 220 25% 8%;
+    --primary-glow: 142 76% 55%;
+
+    --secondary: 220 20% 15%;
+    --secondary-foreground: 0 0% 95%;
+
+    --muted: 220 20% 15%;
+    --muted-foreground: 220 10% 60%;
+
+    --accent: 142 76% 15%;
+    --accent-foreground: 142 76% 85%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 220 20% 20%;
+    --input: 220 20% 15%;
+    --ring: 142 76% 45%;
+    
+    /* Dark Travel Tokens */
+    --travel-green: 142 76% 45%;
+    --travel-green-light: 142 76% 55%;
+    --travel-green-lighter: 142 76% 15%;
+    --travel-dark: 220 25% 5%;
+    --travel-dark-lighter: 220 20% 12%;
+    
+    /* Dark Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--travel-green)) 0%, hsl(var(--travel-green-light)) 100%);
+    --gradient-hero: linear-gradient(135deg, hsl(var(--travel-dark)) 0%, hsl(var(--travel-green)) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 100% / 0.05) 0%, hsl(0 0% 100% / 0.02) 100%);
+    
+    /* Dark Shadows */
+    --shadow-soft: 0 4px 20px hsl(0 0% 0% / 0.3);
+    --shadow-travel: 0 10px 40px hsl(var(--travel-green) / 0.2);
+    --shadow-glow: 0 0 30px hsl(var(--travel-green) / 0.4);
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+/* Travel Platform Utilities & Animations */
+@layer utilities {
+  .travel-gradient {
+    background: var(--gradient-primary);
+  }
+  
+  .hero-gradient {
+    background: var(--gradient-hero);
+  }
+  
+  .card-gradient {
+    background: var(--gradient-card);
+  }
+  
+  .shadow-travel {
+    box-shadow: var(--shadow-travel);
+  }
+  
+  .shadow-glow {
+    box-shadow: var(--shadow-glow);
+  }
+  
+  .transition-smooth {
+    transition: var(--transition-smooth);
+  }
+  
+  .transition-bounce {
+    transition: var(--transition-bounce);
+  }
+}
+
+@layer components {
+  .travel-glass {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  
+  .travel-card {
+    @apply bg-card/80 backdrop-blur-sm border border-border/50 shadow-travel rounded-xl;
+  }
+  
+  .travel-button {
+    @apply bg-primary hover:bg-primary/90 text-primary-foreground font-medium px-6 py-3 rounded-lg transition-smooth hover:shadow-glow hover:scale-105;
+  }
+  
+  .travel-input {
+    @apply bg-background/50 border border-border focus:border-primary focus:ring-1 focus:ring-primary rounded-lg px-4 py-3 transition-smooth;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}

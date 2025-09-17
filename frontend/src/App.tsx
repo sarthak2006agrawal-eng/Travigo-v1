@@ -15,6 +15,7 @@ import NotFound from "./pages/NotFound";
 import Features from "./components/Features";
 import AboutUs from "./components/AboutUs";
 import Contact from "./components/Contact"
+import Destination from "./components/Destination";
 
 const queryClient = new QueryClient();
 
@@ -34,6 +35,8 @@ const App = () => (
             <Route path="/features" element = {<Features/>}/>
             <Route path="/about" element = {<AboutUs/>}/>
             <Route path="/contact" element = {<Contact/>}/>
+            <Route path="/destinations" element = {<Destination />}/>
+
 
           </Route>
           {/* Routes outside layout (fullscreen pages) */}

@@ -17,4 +17,9 @@ router.get("/:id", protect, generatePlan);
 router.put("/:id", protect, updateItinerary);
 router.delete("/:id", protect, deleteItinerary);
 
+
+// ✅ Cerebras AI itinerary generation endpoint
+// Frontend should POST: { destination, trip_name, start_date, end_date, budget, travel_style }
+// Response: JSON fully matching the Itinerary schema
+router.post("/generate", protect, generateItinerary);
 export default router;

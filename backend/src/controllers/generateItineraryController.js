@@ -7,9 +7,9 @@
  * - Returns JSON to frontend
  */
 
-import Itinerary from "../models/itineraryModel.js";
+import Itinerary from "../models/Itinerary.models.js";
 import { generateItineraryFromAI } from "../services/cerebrasService.js";
-import { transformAIResponse } from "../utils/transformAnswer.js";
+import { transformAIResponse } from "../utils/transformAnswers.js";
 import { info, warn, error } from "../utils/logger.js";
 
 /**

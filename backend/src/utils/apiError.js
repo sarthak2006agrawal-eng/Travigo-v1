@@ -1,7 +1,7 @@
 class ApiError {
     constructor(message, statusCode) {
         this.message = message;
-        this.statusCode = statusCode;
+        this.status = statusCode;
     } 
 }   
 export default ApiError;

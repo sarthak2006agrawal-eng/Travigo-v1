@@ -19,11 +19,18 @@ import userRoutes from './routes/userRoute.js';
 import itineraryRoutes from './routes/itineraryRoutes.js';
 // import destinationRoutes from './routes/destinationRoutes.js';
 
+app.get('/api/v1/auth/healthchecker', (req, res) => {
+  res.status(200).json({
+    status: 'success',
+    message: 'Welcome to Travigo API',
+  });
+  
+});
+
 app.use('/api/v1/auth', authRouter);
 app.use("/api/users", userRoutes);
 app.use("/api/itineraries", itineraryRoutes);
 // app.use("/api/destinations", destinationRoutes);
-
 
 
 //error mIddleware

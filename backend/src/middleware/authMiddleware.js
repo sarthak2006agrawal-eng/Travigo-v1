@@ -3,7 +3,7 @@ import { asyncHandler } from '../utils/asyncHandler.js';
 import ApiError from '../utils/apiError.js';
 import User from '../models/User.models.js';
 
-const protect = asyncHandler(async (req, res, next) => {
+const protect = (async (req, res, next) => {
   // 1. Extract token
   const token =
     req.cookies?.access_token ||

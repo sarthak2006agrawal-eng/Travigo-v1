@@ -1,9 +1,9 @@
 import { ApiResponse } from "../utils/apiResponse.js";
 
-export const errorHandler = (res,err)=>{
-  const message = err.message;
-  const status=err.status;
+export const errorHandler = (err,req,res,next)=>{
+  const message = err.message || "Issue with the server";
+  const status=err.status || 500;
 
-  new ApiResponse(status, message).send(res);
+  return new ApiResponse(status, message).send(res);
 
 }; 

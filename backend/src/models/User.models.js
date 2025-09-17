@@ -2,17 +2,6 @@ import { Schema, model } from 'mongoose';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 
-const kycSchema = new Schema({
-  documentType: {
-    type: String,
-    enum: ['passport', 'driver_license', 'aadhar_card', 'pan_card'],
-    required: true,
-  },
-  documentNumber: { type: String, required: true, unique: true },
-  verified: { type: Boolean, default: false },
-  verifiedAt: { type: Date },
-});
-
 const userSchema = new Schema(
   {
     name: { type: String, required: true },
@@ -28,7 +17,7 @@ const userSchema = new Schema(
       },
       interests: [String], // e.g. ["nature", "foodie", "history"]
     },
-    kyc: kycSchema,
+    
     blockchainId: { type: String },
     refreshToken: { type: String }, // needed for refresh
   },

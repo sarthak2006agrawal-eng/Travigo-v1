@@ -1,6 +1,6 @@
-export const asyncHandler = (fn)=> async(req,res,err,next) =>{
+export const asyncHandler = (fn)=> async(req,res,next) =>{
    try {
-      await fn(req,res,err,next);
+      await fn(req,res,next);
    } catch (error) {
     next(error);
    } 

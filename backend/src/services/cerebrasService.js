@@ -1,84 +1,116 @@
 // backend/src/services/cerebrasService.js
+/**
+ * Service to communicate with Cerebras AI for itinerary generation
+ * - Sends user input to AI
+ * - Enforces strict JSON return
+ * - Includes max token limits to prevent truncation
+ * - Handles errors gracefully
+ */
+
 import axios from "axios";
 import dotenv from "dotenv";
+import { info, error } from "../utils/logger.js";
 
 dotenv.config();
 
+// Cerebras API URL & key from environment variables
+const CEREBRAS_API_URL = process.env.CEREBRAS_API_URL;
+const CEREBRAS_API_KEY = process.env.CEREBRAS_API_KEY;
+
+// Maximum tokens for AI output to avoid truncation
+const MAX_TOKENS = 3000;
+
 /**
- * Call Cerebras to generate itinerary JSON
- * @param {Object} payload
- * @param {string} payload.user - User ID
- * @param {string} payload.destination - Destination name
- * @param {number} payload.days - Number of days
- * @param {number} payload.budget - Budget
- * @param {string} payload.travel_style - "luxury", "balanced", or "budget"
- *
- * @returns {Promise<Object>} - JSON matching Itinerary schema
+ * Calls Cerebras AI to generate an itinerary
+ * @param {object} inputJson - Full user input: { user, destination, trip_name, start_date, end_date, budget, travel_style }
+ * @returns {object} - AI-generated itinerary JSON (daily_plan, cost_breakdown, total_days, etc.)
  */
-export const callCerebrasAI = async ({
-  user,
-  destination,
-  days,
-  budget,
-  travel_style,
-}) => {
+export const generateItineraryFromAI = async (inputJson) => {
   try {
-    // Messages array for chat-completions
-    const messages = [
-      {
-        role: "system",
-        content:
-          "You are a travel planner AI. Respond ONLY in valid JSON following this Itinerary schema: user, destination, trip_name, start_date, end_date, total_days, budget, travel_style, daily_plan[], cost_breakdown, status."
-      },
-      {
-        role: "user",
-        content: `Generate a ${days}-day itinerary for ${destination} within a budget of ${budget} INR/USD, travel style: ${travel_style}. Include daily_plan with activities, each activity must have poi_id/accommodation_id placeholders, transport_mode, notes, estimated_cost. status should be 'draft'. Dates should start from today's date. Return only valid JSON, do NOT include any markdown or backticks.`
-      },
-    ];
+    info("Sending request to Cerebras AI", inputJson);
 
-    // Cerebras-native API URL
-    const apiUrl = "https://api.cerebras.ai/v1/chat/completions";
-
-    // API key from env
-    const apiKey = process.env.CEREBRAS_API_KEY;
-
-    // Model (Qwen3 recommended for Cerebras)
-    const model = process.env.AI_MODEL || "qwen/qwen-3-14b-instruct";
-
-    // Call Cerebras API
-    const response = await axios.post(
-      apiUrl,
-      {
-        model,
-        messages,
-        temperature: 0.7,
-        max_tokens: 2000, // ⚠️ adjust to control token usage
-      },
-      {
-        headers: {
-          Authorization: `Bearer ${apiKey}`,
-          "Content-Type": "application/json",
+    const payload = {
+      model: "cerebras/gpt-4.0",
+      max_tokens: MAX_TOKENS,
+      messages: [
+        {
+          role: "system",
+          content: `
+            You are a travel itinerary planner AI.
+            Always return strictly valid JSON matching this schema:
+            {
+              user: string (ObjectId),
+              destination: string (ObjectId),
+              trip_name: string,
+              start_date: string (YYYY-MM-DD),
+              end_date: string (YYYY-MM-DD),
+              total_days: number,
+              budget: number,
+              travel_style: string (luxury | budget | balanced),
+              daily_plan: [
+                {
+                  date: string (YYYY-MM-DD),
+                  activities: [
+                    {
+                      poi_id: string (ObjectId),
+                      accommodation_id: string (ObjectId),
+                      transport_mode: string,
+                      notes: string,
+                      estimated_cost: number
+                    }
+                  ]
+                }
+              ],
+              cost_breakdown: {
+                transport: number,
+                accommodation: number,
+                activities: number,
+                total: number,
+                currency: string
+              },
+              status: string (draft | confirmed | completed | cancelled)
+            }
+            Do NOT include any extra text or explanation. Return JSON only.
+          `,
         },
-      }
-    );
+        {
+          role: "user",
+          content: `Generate itinerary based on the following input:\n${JSON.stringify(
+            inputJson
+          )}`,
+        },
+      ],
+    };
 
-    // Extract AI content
-    let content = response.data?.choices?.[0]?.message?.content;
-    if (!content) throw new Error("No content returned from Cerebras.");
+    const response = await axios.post(CEREBRAS_API_URL, payload, {
+      headers: {
+        Authorization: `Bearer ${CEREBRAS_API_KEY}`,
+        "Content-Type": "application/json",
+      },
+      timeout: 60000, // 60 seconds timeout for API
+    });
 
-    // ✅ Robustly remove Markdown code fences and extra whitespace
-    content = content.replace(/(^```json\s*|^```\s*|```$)/g, "").trim();
+    info("Received response from Cerebras AI");
 
-    // Parse JSON safely
-    const parsed = JSON.parse(content);
+    const aiContent = response.data?.choices?.[0]?.message?.content;
+    if (!aiContent) {
+      error("AI response missing content", response.data);
+      throw new Error("Cerebras AI returned empty content.");
+    }
+
+    let parsed;
+    try {
+      parsed = JSON.parse(aiContent);
+    } catch (parseErr) {
+      error("Failed to parse AI response JSON", parseErr);
+      throw new Error("Cerebras AI returned invalid JSON.");
+    }
 
     return parsed;
-  } catch (error) {
-    console.error(
-      "Cerebras API call failed:",
-      error.response?.data || error.message
+  } catch (err) {
+    error("Cerebras API call failed", err.message);
+    throw new Error(
+      `Failed to generate itinerary from Cerebras AI: ${err.message}`
     );
-    // Fallback or propagate error
-    throw new Error("AI generation failed. Please try again later.");
   }
 };

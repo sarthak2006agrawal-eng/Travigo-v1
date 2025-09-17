@@ -1,86 +1,87 @@
-// backend/src/services/transformAnswers.js
+// backend/src/utils/transformAnswer.js
 /**
- * Transform the raw AI response from Cerebras into a valid Itinerary object
- * matching the backend schema.
+ * Transforms the AI-generated itinerary JSON to exactly match
+ * the Mongoose Itinerary schema.
+ * Ensures all required fields are present and valid.
  */
 
-import mongoose from "mongoose";
+import { info, warn } from "./logger.js";
 
 /**
- * Fills in missing ObjectIds for POIs and accommodations if placeholders exist.
- * @param {Object} raw - Raw JSON from AI
- * @param {string} userId - MongoDB user _id
- * @param {string} destinationId - MongoDB destination _id
- * @returns {Object} - Valid Itinerary document ready to insert into MongoDB
+ * Transform AI response to Mongoose schema
+ * @param {object} aiResponse - Raw JSON from Cerebras AI
+ * @returns {object} - Normalized itinerary object ready to save
  */
-export const transformAnswers = (raw, userId, destinationId) => {
+export const transformAIResponse = (aiResponse) => {
   try {
-    // Base itinerary object
-    const itinerary = {
-      user: mongoose.Types.ObjectId(userId),
-      destination: mongoose.Types.ObjectId(destinationId),
-      trip_name: raw.trip_name || "My Trip",
-      start_date: raw.start_date ? new Date(raw.start_date) : new Date(),
-      end_date: raw.end_date
-        ? new Date(raw.end_date)
-        : new Date(new Date().setDate(new Date().getDate() + (raw.total_days || 1))),
-      total_days: raw.total_days || 1,
-      budget: raw.budget || 0,
-      travel_style: raw.travel_style || "balanced",
+    if (!aiResponse) {
+      throw new Error("AI response is null or undefined");
+    }
+
+    // Ensure required top-level fields
+    const transformed = {
+      user: aiResponse.user || null,
+      destination: aiResponse.destination || null,
+      trip_name: aiResponse.trip_name || "My Trip",
+      start_date: aiResponse.start_date
+        ? new Date(aiResponse.start_date)
+        : new Date(),
+      end_date: aiResponse.end_date ? new Date(aiResponse.end_date) : new Date(),
+      total_days: aiResponse.total_days || 1,
+      budget: aiResponse.budget || 0,
+      travel_style: aiResponse.travel_style || "balanced",
+      status: aiResponse.status || "draft",
       daily_plan: [],
       cost_breakdown: {
         transport: 0,
         accommodation: 0,
         activities: 0,
         total: 0,
-        currency: raw.cost_breakdown?.currency || "INR",
+        currency: "INR",
+        ...aiResponse.cost_breakdown,
       },
-      status: raw.status || "draft",
     };
 
-    // Transform daily_plan with activity placeholders
-    if (Array.isArray(raw.daily_plan)) {
-      itinerary.daily_plan = raw.daily_plan.map((day) => ({
-        date: day.date ? new Date(day.date) : new Date(),
-        activities: Array.isArray(day.activities)
-          ? day.activities.map((act) => ({
-              poi_id: act.poi_id
-                ? mongoose.Types.ObjectId(act.poi_id)
-                : mongoose.Types.ObjectId(), // placeholder ObjectId
-              accommodation_id: act.accommodation_id
-                ? mongoose.Types.ObjectId(act.accommodation_id)
-                : mongoose.Types.ObjectId(), // placeholder ObjectId
-              transport_mode: act.transport_mode || "car_rental",
-              notes: act.notes || "",
-              estimated_cost: act.estimated_cost || 0,
-            }))
-          : [],
-      }));
+    // Normalize daily_plan
+    if (Array.isArray(aiResponse.daily_plan)) {
+      transformed.daily_plan = aiResponse.daily_plan.map((day) => {
+        const activities =
+          Array.isArray(day.activities) && day.activities.length > 0
+            ? day.activities.map((act) => ({
+                poi_id: act.poi_id || null,
+                accommodation_id: act.accommodation_id || null,
+                transport_mode: act.transport_mode || "walk",
+                notes: act.notes || "",
+                estimated_cost: act.estimated_cost || 0,
+              }))
+            : [];
+
+        return {
+          date: day.date ? new Date(day.date) : new Date(),
+          activities,
+        };
+      });
+    } else {
+      warn("AI response daily_plan is missing or invalid", aiResponse.daily_plan);
     }
 
-    // Auto-calculate cost breakdown
-    let transport = 0,
-      accommodation = 0,
-      activities = 0;
+    // Auto-calculate total cost if not present
+    if (!transformed.cost_breakdown.total) {
+      const totalActivities = transformed.daily_plan.reduce((sum, day) => {
+        return (
+          sum +
+          day.activities.reduce((aSum, act) => aSum + (act.estimated_cost || 0), 0)
+        );
+      }, 0);
+      transformed.cost_breakdown.total =
+        totalActivities +
+        (transformed.cost_breakdown.transport || 0) +
+        (transformed.cost_breakdown.accommodation || 0);
+    }
 
-    itinerary.daily_plan.forEach((day) =>
-      day.activities.forEach((act) => {
-        // Currently all transport/accommodation costs are zero; estimated_cost counts toward activities
-        activities += act.estimated_cost || 0;
-      })
-    );
-
-    itinerary.cost_breakdown = {
-      transport,
-      accommodation,
-      activities,
-      total: transport + accommodation + activities,
-      currency: itinerary.cost_breakdown.currency,
-    };
-
-    return itinerary;
+    info("AI response transformed successfully");
+    return transformed;
   } catch (err) {
-    console.error("Error transforming AI answer:", err);
-    throw new Error("Failed to transform AI response.");
+    throw new Error(`Failed to transform AI response: ${err.message}`);
   }
 };

@@ -12,6 +12,9 @@ import ProfileSetup from "./pages/ProfileSetup";
 import CreateItinerary from "./pages/CreateItinerary";
 import ItineraryResult from "./pages/ItineraryResult";
 import NotFound from "./pages/NotFound";
+import Features from "./components/Features";
+import AboutUs from "./components/AboutUs";
+import Contact from "./components/Contact"
 
 const queryClient = new QueryClient();
 
@@ -28,6 +31,10 @@ const App = () => (
             <Route path="/profile-setup" element={<ProfileSetup />} />
             <Route path="/create-itinerary" element={<CreateItinerary />} />
             <Route path="/itinerary-result" element={<ItineraryResult />} />
+            <Route path="/features" element = {<Features/>}/>
+            <Route path="/about" element = {<AboutUs/>}/>
+            <Route path="/contact" element = {<Contact/>}/>
+
           </Route>
           {/* Routes outside layout (fullscreen pages) */}
           <Route path="/login" element={<Login />} />

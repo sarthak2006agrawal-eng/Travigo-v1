@@ -4,7 +4,8 @@ import {
   getUserItineraries,
   generatePlan,
   updateItinerary,
-  deleteItinerary
+  deleteItinerary,
+  generateItinerary //added for itinerary generation model
 } from "../controllers/itineraryController.js";
 import protect from "../middleware/authMiddleware.js";
 

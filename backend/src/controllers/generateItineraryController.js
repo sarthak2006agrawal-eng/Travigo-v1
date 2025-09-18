@@ -1,64 +1,54 @@
 // backend/src/controllers/generateItineraryController.js
-import { callCerebrasAI } from "../services/cerebrasService.js";
-import { transformAnswers } from "../utils/transformAnswers.js";
-import fs from "fs";
-import path from "path";
+/**
+ * Controller for AI-generated itineraries using Cerebras AI
+ * - Calls AI service
+ * - Transforms the response
+ * - Saves itinerary to MongoDB
+ * - Returns JSON to frontend
+ */
+
 import Itinerary from "../models/Itinerary.models.js";
+import { generateItineraryFromAI } from "../services/cerebrasService.js";
+import { transformAIResponse } from "../utils/transformAnswers.js";
+import { info, warn, error } from "../utils/logger.js";
 
 /**
  * POST /api/itineraries/generate
- * Generate a travel itinerary using Cerebras AI
- * Fallback to local JSON if AI fails
+ * Generates itinerary using Cerebras AI and saves to DB
  */
 export const generateItinerary = async (req, res) => {
   try {
-    const { destination, trip_name, start_date, end_date, budget, travel_style } = req.body;
-    const userId = req.user._id;
+    const { user, destination, trip_name, start_date, end_date, budget, travel_style } =
+      req.body;
 
-    // Calculate total_days
-    const total_days =
-      start_date && end_date
-        ? Math.ceil((new Date(end_date) - new Date(start_date)) / (1000 * 60 * 60 * 24)) + 1
-        : 1;
-
-    let aiResponse;
-
-    // 1️⃣ Call Cerebras AI chat-completions
-    try {
-      aiResponse = await callCerebrasAI({
-        user: userId,
-        destination,
-        days: total_days,
-        budget,
-        travel_style,
+    // Validate required fields
+    if (!user || !destination || !start_date || !end_date) {
+      warn("Missing required fields for itinerary generation", req.body);
+      return res.status(400).json({
+        error: "Required fields missing: user, destination, start_date, end_date",
       });
-    } catch (err) {
-      console.warn("Cerebras AI failed, using fallback:", err.message);
-
-      // 2️⃣ Fallback: load local JSON
-      const fallbackPath = path.join(process.cwd(), "src", "data", `${destination.toLowerCase()}.json`);
-      const fallbackData = fs.existsSync(fallbackPath)
-        ? JSON.parse(fs.readFileSync(fallbackPath, "utf-8"))
-        : {
-            trip_name: trip_name || "My Trip",
-            daily_plan: [],
-            total_days,
-            budget,
-            travel_style,
-            status: "draft",
-          };
-      aiResponse = fallbackData;
     }
 
-    // 3️⃣ Transform AI/fallback response to match Itinerary schema
-    const itineraryData = transformAnswers(aiResponse, userId, req.body.destination_id || destination);
+    info("Starting AI itinerary generation", { user, destination });
 
-    // 4️⃣ Save to DB
-    const newItinerary = await Itinerary.create(itineraryData);
+    // Prepare input for AI
+    const aiInput = { user, destination, trip_name, start_date, end_date, budget, travel_style };
 
-    return res.status(201).json(newItinerary);
-  } catch (error) {
-    console.error("Error generating itinerary:", error);
-    return res.status(500).json({ message: "Failed to generate itinerary." });
+    // Call Cerebras AI
+    const aiResponse = await generateItineraryFromAI(aiInput);
+
+    // Transform AI response to match Mongoose schema
+    const transformed = transformAIResponse(aiResponse);
+
+    // Save to MongoDB
+    const itinerary = new Itinerary(transformed);
+    await itinerary.save();
+
+    info("AI-generated itinerary saved successfully", { itineraryId: itinerary._id });
+
+    res.status(201).json(itinerary);
+  } catch (err) {
+    error("Failed to generate/save AI itinerary", err.message);
+    res.status(500).json({ error: `Itinerary generation failed: ${err.message}` });
   }
 };

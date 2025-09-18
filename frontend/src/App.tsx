@@ -16,6 +16,9 @@ import Features from "./components/Features";
 import AboutUs from "./components/AboutUs";
 import Contact from "./components/Contact"
 import Destination from "./components/Destination";
+import Bookings from "./components/Bookings";
+import LiveTracking from "./pages/LiveTracking";
+import TripDetails from "./pages/TripDetails";
 
 const queryClient = new QueryClient();
 
@@ -36,7 +39,9 @@ const App = () => (
             <Route path="/about" element = {<AboutUs/>}/>
             <Route path="/contact" element = {<Contact/>}/>
             <Route path="/destinations" element = {<Destination />}/>
-
+            <Route path="/booking" element = {<Bookings />}/>
+            <Route path="/tracking" element = {<TripDetails/>}/>
+            
 
           </Route>
           {/* Routes outside layout (fullscreen pages) */}

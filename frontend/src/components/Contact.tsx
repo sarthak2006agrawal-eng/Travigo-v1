@@ -513,7 +513,7 @@ const Contact = () => {
               <Button 
                 variant="outline" 
                 size="lg" 
-                className="border-white/30 text-red hover:bg-white/60 hover:text-black font-semibold px-8 py-4 h-auto text-lg backdrop-blur-sm"
+                className="border-white/30 text-white hover:bg-white/10 font-semibold px-8 py-4 h-auto text-lg backdrop-blur-sm"
                 asChild
               >
                 <Link to="/features">View Features</Link>

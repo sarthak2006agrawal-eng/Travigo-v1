@@ -522,7 +522,7 @@ const Bookings = () => {
                   <Button variant="outline">
                     Back to Itinerary
                   </Button>
-                </Link>
+                  onClick={() => window.open(hotel.bookingUrl, '_blank')}
                 <Button className="travel-button">
                   <Shield className="h-4 w-4 mr-2" />
                   Book All Items

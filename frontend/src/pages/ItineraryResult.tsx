@@ -367,10 +367,9 @@ const ItineraryResult = () => {
           </Link>
           <Link to="/booking">
             <Button size="lg" className="travel-button">
-            Book This Trip
+              Book This Trip
            </Button>
           </Link>
-          
 
           <Link to="/create-itinerary">
             <Button variant="outline" size="lg">
